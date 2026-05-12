@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'UXFont';
+  src: url('/UXFont.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "UXFont", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "UXFont", "Anton", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-p5-red: #D3121E;
+  --color-p5-black: #000000;
+  --color-p5-white: #FFFFFF;
+  --color-p5-cyan: #1CFEFF;
+}
+
+@layer base {
+  body {
+    @apply bg-p5-black text-p5-white font-sans overflow-hidden;
+    background-color: #000;
+    background-image: 
+      linear-gradient(45deg, rgba(211, 18, 30, 0.05) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(211, 18, 30, 0.05) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(211, 18, 30, 0.05) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(211, 18, 30, 0.05) 75%);
+    background-size: 80px 80px;
+    background-position: 0 0, 0 40px, 40px 40px, 40px 0;
+  }
+}
+
+@layer components {
+  .p5-menu-item {
+    @apply relative py-3 px-10 bg-p5-white text-p5-black font-display text-4xl uppercase skew-x-[-15deg] transition-all duration-150 cursor-pointer overflow-hidden border-2 border-transparent select-none;
+    box-shadow: 10px 10px 0px theme('colors.p5-red');
+  }
+
+  @media (max-width: 768px) {
+    .p5-menu-item {
+      @apply py-2 px-4 text-xl;
+      box-shadow: 6px 6px 0px theme('colors.p5-red');
+    }
+
+    .p5-menu-item:hover, .p5-menu-item.active {
+      @apply translate-x-2 -translate-y-1;
+      box-shadow: -6px 6px 0px theme('colors.p5-black');
+    }
+  }
+
+  .p5-menu-item:hover, .p5-menu-item.active {
+    @apply bg-p5-red text-p5-white translate-x-6 -translate-y-3 border-p5-black;
+    box-shadow: -10px 10px 0px theme('colors.p5-black');
+  }
+
+  .p5-card {
+    @apply bg-p5-white text-p5-black relative;
+    clip-path: polygon(
+      2% 2%, 97% 0%, 100% 95%, 3% 100%
+    );
+    box-shadow: 15px 15px 0px theme('colors.p5-red');
+  }
+
+  @media (max-width: 768px) {
+    .p5-card {
+      box-shadow: 8px 8px 0px theme('colors.p5-red');
+    }
+  }
+
+  .p5-card-inner {
+    @apply p-10 h-full overflow-y-auto relative z-10;
+  }
+
+  @media (max-width: 768px) {
+    .p5-card-inner {
+      @apply p-4;
+    }
+  }
+
+  .p5-card::before {
+    content: "";
+    @apply absolute inset-0 bg-black opacity-5 pointer-events-none;
+    background-image: radial-gradient(circle, #000 1px, transparent 1px);
+    background-size: 8px 8px;
+  }
+
+  .jelly-anim {
+    animation: jelly 0.6s infinite alternate ease-in-out;
+  }
+
+  @keyframes jelly {
+    0% { transform: scale(1, 1) skewX(0deg); }
+    100% { transform: scale(1.05, 0.95) skewX(-2deg); }
+  }
+
+  .scanline {
+    @apply fixed inset-0 pointer-events-none z-50;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(211, 18, 30, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 100% 4px;
+    animation: scanline_move 10s linear infinite;
+  }
+
+  @keyframes scanline_move {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-gray-200;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-p5-red border border-transparent;
+  }
+
+  .halftone {
+    background-image: radial-gradient(#000 20%, transparent 20%);
+    background-size: 4px 4px;
+  }
+
+  /* Mobile optimizations */
+  @media (max-width: 768px) {
+    html, body {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+    }
+
+    /* Prevent zoom on double tap */
+    input, button {
+      font-size: 16px;
+    }
+
+    /* Safe area support */
+    body {
+      padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    }
+  }
+}
