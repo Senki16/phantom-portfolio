@@ -57,7 +57,7 @@ const resumeData = {
       role: "Academic Assistant",
       company: "Universidad EAFIT (Research Group)",
       period: "2024",
-      location: "Medellín",
+      location: "Medellin",
       desc: "Worked in a research group focused on motorcycle efficiency and fuel consumption. Performed data analysis and information processing, as well as maintenance labors."
     }
   ],
