@@ -32,7 +32,7 @@ interface Section {
 
 // --- Data ---
 const sections: Section[] = [
-  { id: 'home', label: 'Description' },
+  { id: 'home', label: 'About Me' },
   { id: 'experience', label: 'Experience' },
   { id: 'education', label: 'Education' },
   { id: 'projects', label: 'Projects' },
@@ -357,7 +357,7 @@ export default function App() {
                         />
                       </div>
                       <div className="flex-1">
-                        <h2 className="text-3xl md:text-7xl font-display uppercase leading-none mb-2">Description</h2>
+                        <h2 className="text-3xl md:text-7xl font-display uppercase leading-none mb-2">About Me</h2>
                         <p className="text-base md:text-2xl font-bold bg-p5-black text-p5-white inline-block px-4 py-1 skew-x-[-10deg]">
                           David Zuluaga Henao
                         </p>
@@ -451,7 +451,7 @@ export default function App() {
                     </section>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-10">
                       <section>
-                        <h3 className="text-base md:text-2xl font-display uppercase border-b-4 border-p5-black mb-2 md:mb-4">Interrogation</h3>
+                        <h3 className="text-base md:text-2xl font-display uppercase border-b-4 border-p5-black mb-2 md:mb-4">Languages</h3>
                         <div className="flex flex-wrap gap-2">
                           {resumeData.skills.languages.map((lang, i) => (
                             <div key={i} className="bg-p5-black text-p5-white px-2 md:px-3 py-1 skew-x-[-10deg] text-xs md:text-base">
@@ -461,7 +461,7 @@ export default function App() {
                         </div>
                       </section>
                       <section>
-                        <h3 className="text-base md:text-2xl font-display uppercase border-b-4 border-p5-black mb-2 md:mb-4">Tactics</h3>
+                        <h3 className="text-base md:text-2xl font-display uppercase border-b-4 border-p5-black mb-2 md:mb-4">Abilities</h3>
                         <div className="flex flex-wrap gap-2">
                           {resumeData.skills.soft.map((s, i) => (
                             <span key={i} className="border-2 border-p5-black px-2 py-1 text-xs md:text-sm font-bold uppercase">{s}</span>
