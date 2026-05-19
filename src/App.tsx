@@ -91,7 +91,12 @@ const resumeData = {
       { name: "Aseprite", level: "Intermediate" },
       { name: "LaTeX", level: "Intermediate" },
       { name: "Creo Parametric", level: "Basic" },
-      { name: "Power Apps", level: "Basic" }
+      { name: "Power Apps", level: "Basic" },
+      { name: "Claude", level: "Intermediate" },
+      { name: "Gemini", level: "Intermediate" },
+      { name: "Visual Studio", level: "Intermediate" },
+      { name: "Android Studio", level: "Basic" },
+      { name: "Antigravity", level: "Basic" }
     ],
     soft: ["Problem-solving", "Mechanical analysis", "Fast learning", "Computational skills", "Discipline", "Adaptability", "Teamwork", "Communication", "Leadership"],
     languages: [
@@ -119,7 +124,9 @@ const resumeData = {
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls." },
     { name: "Human Powered Vehicles (HPV)", desc: "Engineering design for efficient transport." },
     { name: "Process Automation", desc: "Arduino-based industrial automation prototypes." },
-    { name: "Unity Game Dev", desc: "Basic knowledge in game development and 2D/3D assets." }
+    { name: "Unity Game Dev", desc: "Basic knowledge in game development and 2D/3D assets." },
+    { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", url: "https://github.com/Senki16/Hunter-Training" },
+    { name: "YOLOv5 Object Detection App", desc: "Object detection app built with YOLOv5.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC" }
   ]
 };
 
@@ -407,13 +414,27 @@ export default function App() {
                           color: "#fff"
                         }}
                         onMouseEnter={() => playSfx('hover')}
-                        className="bg-gray-100 p-3 md:p-6 border-r-8 border-p5-red group transition-all duration-200 cursor-default"
+                        className="bg-gray-100 p-3 md:p-6 border-r-8 border-p5-red group transition-all duration-200"
                       >
-                        <h3 className="text-lg md:text-3xl font-display uppercase flex items-center gap-2 md:gap-4">
-                          <Zap className="text-p5-red group-hover:animate-pulse w-5 h-5 md:w-6 md:h-6" />
-                          {project.name}
-                        </h3>
-                        <p className="text-xs md:text-lg italic mt-2 opacity-80">{project.desc}</p>
+                        <div className="flex flex-col gap-3">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <h3 className="text-lg md:text-3xl font-display uppercase flex items-center gap-2 md:gap-4">
+                              <Zap className="text-p5-red group-hover:animate-pulse w-5 h-5 md:w-6 md:h-6" />
+                              {project.name}
+                            </h3>
+                            {project.url && (
+                              <a
+                                href={project.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-2 py-1 hover:bg-p5-black hover:text-p5-white transition-colors"
+                              >
+                                GitHub
+                              </a>
+                            )}
+                          </div>
+                          <p className="text-xs md:text-lg italic mt-2 opacity-80">{project.desc}</p>
+                        </div>
                       </motion.div>
                     ))}
                   </div>
