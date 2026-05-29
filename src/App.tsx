@@ -121,7 +121,7 @@ const resumeData = {
   ],
   portfolio: [
     { name: "Tripteron Systems", desc: "Developed complex robotic system modeling." },
-    { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls." },
+    { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
     { name: "Human Powered Vehicles (HPV)", desc: "Engineering design for efficient transport." },
     { name: "Process Automation", desc: "Arduino-based industrial automation prototypes." },
     { name: "Unity Game Dev", desc: "Basic knowledge in game development and 2D/3D assets." },
@@ -430,6 +430,17 @@ export default function App() {
                                 className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-2 py-1 hover:bg-p5-black hover:text-p5-white transition-colors"
                               >
                                 GitHub
+                              </a>
+                            )}
+                            {project.videoUrl && (
+                              <a
+                                href={project.videoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-2 py-1 hover:bg-p5-black hover:text-p5-white transition-colors flex items-center gap-1"
+                              >
+                                <ExternalLink className="w-3 h-3" />
+                                Video
                               </a>
                             )}
                           </div>
