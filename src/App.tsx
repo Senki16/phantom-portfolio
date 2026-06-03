@@ -50,7 +50,7 @@ const resumeData = {
     phone: "+573046593793",
     location: "Envigado, Colombia",
     linkedin: "senki17david",
-    summary: "Mechanical Engineering student at Universidad EAFIT. Experience in data analysis (Excel, Python, MATLAB), automation with Arduino, and modeling/simulation in SolidWorks. Characterized by discipline, analytical thinking, and organization, with resilience and strong problem-solving skills. Brown belt in taekwondo, which has strengthened my discipline and consistency."
+    summary: "Mechanical Engineering student at Universidad EAFIT. Experience in data analysis (Excel, Python, MATLAB), automation with Arduino, and modeling/simulation in SolidWorks. Characterized by discipline, analytical thinking, and organization, with resilience and strong problem-solving skills. Black belt in taekwondo, which has strengthened my discipline and consistency."
   },
   experience: [
     {
@@ -114,7 +114,7 @@ const resumeData = {
     { title: "Symphony Orchestra", body: "Selected violinist in the Youth Symphony Orchestra of the Dominican Republic (2015)." }
   ],
   extracurricular: [
-    { title: "Taekwondo", company: "Dragon Rojo Club", period: "2022–Present", note: "Brown Belt" },
+    { title: "Taekwondo", company: "Dragon Rojo Club", period: "2022–Present", note: "Black Belt" },
     { title: "Turbomachinery Research", company: "Universidad EAFIT", period: "2023" },
     { title: "Japanese Study", company: "Haru no Hinata Academy", period: "2023–Present" },
     { title: "Swimming", company: "Brazada Club", period: "2016–2019" }
