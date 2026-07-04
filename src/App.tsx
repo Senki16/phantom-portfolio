@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef, JSX } from 'react';
+import React, { useState, useEffect, useRef, JSX } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   User, 
@@ -126,7 +126,8 @@ const resumeData = {
     { name: "Process Automation", desc: "Arduino-based industrial automation prototypes." },
     { name: "Unity Game Dev", desc: "Basic knowledge in game development and 2D/3D assets." },
     { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", url: "https://github.com/Senki16/Hunter-Training" },
-    { name: "YOLOv5 Object Detection App", desc: "Object detection app built with YOLOv5.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC" }
+    { name: "YOLOv5 Object Detection App", desc: "Object detection app built with YOLOv5.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC" },
+    { name: "NEONSAE Videogame", desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
   ]
 };
 
@@ -441,6 +442,17 @@ export default function App() {
                               >
                                 <ExternalLink className="w-3 h-3" />
                                 Video
+                              </a>
+                            )}
+                            {project.liveUrl && (
+                              <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-black px-2 py-1 hover:bg-p5-red hover:text-p5-white transition-colors flex items-center gap-1"
+                              >
+                                <ExternalLink className="w-3 h-3" />
+                                Play
                               </a>
                             )}
                           </div>
