@@ -124,7 +124,6 @@ const resumeData = {
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
     { name: "Human Powered Vehicles (HPV)", desc: "Engineering design for efficient transport." },
     { name: "Process Automation", desc: "Arduino-based industrial automation prototypes." },
-    { name: "Unity Game Dev", desc: "Basic knowledge in game development and 2D/3D assets." },
     { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", url: "https://github.com/Senki16/Hunter-Training" },
     { name: "YOLOv5 Object Detection App", desc: "Object detection app built with YOLOv5.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC" },
     { name: "NEONSAE Videogame", desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
