@@ -122,8 +122,13 @@ const resumeData = {
   portfolio: [
     { name: "Tripteron Systems", desc: "Developed complex robotic system modeling." },
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
-    { name: "Human Powered Vehicles (HPV)", desc: "Engineering design for efficient transport." },
+    { name: "Human Powered Vehicles (HPV)", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
+    { name: "Pneumatic Vacuum Gripper", desc: "Modular venturi vacuum gripper for a robotic arm with 4 suction cups and ESP32 monitoring.", url: "https://github.com/Senki16/pneumatic-vacuum-gripper" },
+    { name: "FEM Bench Vise Analysis", desc: "Static FEM analysis in SolidWorks Simulation, validated with strain-gauge measurements.", url: "https://github.com/Senki16/fem-bench-vise-analysis" },
+    { name: "Spaghetti Truss Analysis", desc: "Pratt truss design with material testing, a Python method-of-joints solver and buckling analysis.", url: "https://github.com/Senki16/spaghetti-truss-analysis" },
     { name: "Process Automation", desc: "Arduino-based industrial automation prototypes." },
+    { name: "Nintendo Switch Sales Analysis", desc: "Exploratory data analysis in Python (pandas, Matplotlib, SciPy) with hypothesis testing.", url: "https://github.com/Senki16/nintendo-switch-sales-analysis" },
+    { name: "Landslide Monitoring Proposal", desc: "AI-assisted landslide monitoring platform proposal for the Medellín–Bogotá highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal" },
     { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", url: "https://github.com/Senki16/Hunter-Training" },
     { name: "YOLOv5 Object Detection App", desc: "Object detection app built with YOLOv5.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC" },
     { name: "NEONSAE Videogame", desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
