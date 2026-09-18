@@ -120,7 +120,7 @@ const resumeData = {
     { title: "Swimming", company: "Brazada Club", period: "2016–2019" }
   ],
   portfolio: [
-    { name: "Tripteron Systems", desc: "Developed complex robotic system modeling." },
+    { name: "Tripteron CNC Router", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
     { name: "Human Powered Vehicles (HPV)", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
     { name: "Pneumatic Vacuum Gripper", desc: "Modular venturi vacuum gripper for a robotic arm with 4 suction cups and ESP32 monitoring.", url: "https://github.com/Senki16/pneumatic-vacuum-gripper" },
