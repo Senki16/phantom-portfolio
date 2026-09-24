@@ -126,10 +126,15 @@ const resumeData = {
     { name: "Pneumatic Vacuum Gripper", desc: "Modular venturi vacuum gripper for a robotic arm with 4 suction cups and ESP32 monitoring.", url: "https://github.com/Senki16/pneumatic-vacuum-gripper" },
     { name: "FEM Bench Vise Analysis", desc: "Static FEM analysis in SolidWorks Simulation, validated with strain-gauge measurements.", url: "https://github.com/Senki16/fem-bench-vise-analysis" },
     { name: "Spaghetti Truss Analysis", desc: "Pratt truss design with material testing, a Python method-of-joints solver and buckling analysis.", url: "https://github.com/Senki16/spaghetti-truss-analysis" },
+    { name: "Project Icarus — Folding Bicycle", desc: "Folding bicycle built around a purpose-designed hinge, machined and assembled for Machine Design II.", url: "https://github.com/Senki16/icarus-folding-bicycle" },
+    { name: "Stirling Engine — Candle & Coin", desc: "Beta-type Stirling engine powered by a single tea candle, built to lift a coin 1.5 m.", url: "https://github.com/Senki16/stirling-engine-candle-coin" },
+    { name: "EcoShamp Process Automation", desc: "Automated nano-factory for natural shampoo: seven subprocesses, sensors and actuators for 2,000–3,000 units/day.", url: "https://github.com/Senki16/ecoshamp-process-automation" },
+    { name: "Elevator Maintenance — EAFIT", desc: "Study of EAFIT's elevator system: standards, installed brands, cost-reduction routes and a maintenance-plan simulator.", url: "https://github.com/Senki16/elevator-maintenance-eafit", liveUrl: "https://elevator-maintenance-eafit.vercel.app", liveLabel: "Website" },
+    { name: "Everyday Ecology Challenge", desc: "Home bokashi composting experiment documented as a seven-page website.", url: "https://github.com/Senki16/everyday-ecology-challenge" },
     { name: "Process Automation", desc: "Arduino-based industrial automation prototypes." },
     { name: "Nintendo Switch Sales Analysis", desc: "Exploratory data analysis in Python (pandas, Matplotlib, SciPy) with hypothesis testing.", url: "https://github.com/Senki16/nintendo-switch-sales-analysis" },
     { name: "Landslide Monitoring Proposal", desc: "AI-assisted landslide monitoring platform proposal for the Medellín–Bogotá highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal" },
-    { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", url: "https://github.com/Senki16/Hunter-Training" },
+    { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", liveUrl: "https://hunter-training-alpha.vercel.app/", liveLabel: "Open App" },
     { name: "YOLOv5 Object Detection App", desc: "Object detection app built with YOLOv5.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC" },
     { name: "NEONSAE Videogame", desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
   ]
@@ -456,7 +461,7 @@ export default function App() {
                                 className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-black px-2 py-1 hover:bg-p5-red hover:text-p5-white transition-colors flex items-center gap-1"
                               >
                                 <ExternalLink className="w-3 h-3" />
-                                Play
+                                {project.liveLabel ?? 'Play'}
                               </a>
                             )}
                           </div>
