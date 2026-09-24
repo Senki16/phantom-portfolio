@@ -131,9 +131,8 @@ const resumeData = {
     { name: "EcoShamp Process Automation", desc: "Automated nano-factory for natural shampoo: seven subprocesses, sensors and actuators for 2,000–3,000 units/day.", url: "https://github.com/Senki16/ecoshamp-process-automation" },
     { name: "Elevator Maintenance — EAFIT", desc: "Study of EAFIT's elevator system: standards, installed brands, cost-reduction routes and a maintenance-plan simulator.", url: "https://github.com/Senki16/elevator-maintenance-eafit", liveUrl: "https://elevator-maintenance-eafit.vercel.app", liveLabel: "Website" },
     { name: "Everyday Ecology Challenge", desc: "Home bokashi composting experiment documented as a seven-page website.", url: "https://github.com/Senki16/everyday-ecology-challenge" },
-    { name: "Process Automation", desc: "Arduino-based industrial automation prototypes." },
     { name: "Nintendo Switch Sales Analysis", desc: "Exploratory data analysis in Python (pandas, Matplotlib, SciPy) with hypothesis testing.", url: "https://github.com/Senki16/nintendo-switch-sales-analysis" },
-    { name: "Landslide Monitoring Proposal", desc: "AI-assisted landslide monitoring platform proposal for the Medellín–Bogotá highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal" },
+    { name: "Landslide Monitoring Proposal", desc: "AI-assisted landslide monitoring platform proposal for the Medellín–Bogotá highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal", liveUrl: "https://slopewatch-landslide.vercel.app", liveLabel: "Website" },
     { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", liveUrl: "https://hunter-training-alpha.vercel.app/", liveLabel: "Open App" },
     { name: "YOLOv5 Object Detection App", desc: "Object detection app built with YOLOv5.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC" },
     { name: "NEONSAE Videogame", desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
