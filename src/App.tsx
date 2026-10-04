@@ -58,6 +58,13 @@ const resumeData = {
   },
   experience: [
     {
+      role: "Freelance App Developer",
+      company: "Self-employed",
+      period: "Aug 2026 - Present",
+      location: "Medellin, Colombia · Remote",
+      desc: "Developed custom web and mobile applications, integrating software development with engineering-oriented problem solving. Designed user interfaces, implemented application functionality, and developed solutions tailored to client requirements."
+    },
+    {
       role: "Academic Assistant",
       company: "Universidad EAFIT (Research Group)",
       period: "2024",
@@ -326,15 +333,15 @@ export default function App() {
       {/* Animated background video, darkened so the star, dots and content stay readable */}
       <video
         className="fixed inset-0 w-full h-full object-cover pointer-events-none z-0"
-        poster="/BackgroundLoop.jpg"
+        poster="/BackgroundTokyo.jpg"
         autoPlay={!prefersReducedMotion}
         loop
         muted
         playsInline
         aria-hidden="true"
       >
-        <source src="/BackgroundLoop.webm" type="video/webm" />
-        <source src="/BackgroundLoop.mp4" type="video/mp4" />
+        <source src="/BackgroundTokyo.webm" type="video/webm" />
+        <source src="/BackgroundTokyo.mp4" type="video/mp4" />
       </video>
       <div
         className="fixed inset-0 pointer-events-none z-0"
@@ -434,7 +441,7 @@ export default function App() {
             </motion.div>
 
             <div className="w-full h-[60vh] sm:h-[70vh] md:h-[80vh] p5-card group">
-              <div className="p5-card-inner custom-scrollbar text-sm sm:text-base md:text-base">
+              <div className="p5-card-inner custom-scrollbar text-sm sm:text-base md:text-base md:pt-20">
                 {activeSection === 'home' && (
                   <div className="space-y-4 md:space-y-8">
                     <div className="flex flex-col md:flex-row items-start gap-4 md:gap-8">
