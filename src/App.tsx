@@ -444,15 +444,6 @@ export default function App() {
             transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
             className="w-full relative"
           >
-            {/* Section Header */}
-            <motion.div
-              initial={{ x: -100, opacity: 0, skewX: -20 }}
-              animate={{ x: 0, opacity: 1, skewX: -20 }}
-              className="hidden md:block absolute -top-6 -left-10 z-40 bg-p5-red text-p5-white px-8 py-4 font-display text-4xl uppercase shadow-[10px_10px_0px_black]"
-            >
-              {sections.find(s => s.id === activeSection)?.label}
-            </motion.div>
-
             <div className="w-full h-[60vh] sm:h-[70vh] md:h-[80vh] p5-card group">
               <div className="p5-card-inner custom-scrollbar text-sm sm:text-base md:text-base md:pt-20">
                 {activeSection === 'home' && (
@@ -789,6 +780,33 @@ export default function App() {
           </motion.div>
         </AnimatePresence>
       </main>
+
+      {/* Section label: its own layer above the dots and star (like the menu buttons).
+          It mirrors the main layout and the card's enter/exit animation so it stays
+          pinned to the card's top-left corner. Desktop only, like before. */}
+      <div className="hidden md:flex absolute inset-0 z-30 pointer-events-none">
+        <div className="w-full md:w-2/3 md:ml-auto md:h-screen md:p-20 md:pt-16 flex items-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSection}
+              initial={{ x: 300, opacity: 0, skewX: 10 }}
+              animate={{ x: 0, opacity: 1, skewX: 0 }}
+              exit={{ x: -300, opacity: 0, skewX: -10 }}
+              transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
+              className="w-full relative"
+            >
+              <motion.div
+                initial={{ x: -100, opacity: 0, skewX: -20 }}
+                animate={{ x: 0, opacity: 1, skewX: -20 }}
+                className="absolute -top-6 -left-10 bg-p5-red text-p5-white px-8 py-4 font-display text-4xl uppercase shadow-[10px_10px_0px_black]"
+              >
+                {sections.find(sec => sec.id === activeSection)?.label}
+              </motion.div>
+              <div className="w-full h-[60vh] sm:h-[70vh] md:h-[80vh]" />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </div>
 
       {/* Transitional Graphics & Accents */}
       <motion.div 
