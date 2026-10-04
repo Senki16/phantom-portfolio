@@ -792,7 +792,7 @@ export default function App() {
 
       {/* Transitional Graphics & Accents */}
       <motion.div 
-        className="fixed -bottom-20 -right-20 opacity-25 pointer-events-none z-0"
+        className="fixed -bottom-20 -right-20 opacity-25 pointer-events-none z-20"
         animate={{ rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
       >
@@ -800,8 +800,8 @@ export default function App() {
       </motion.div>
 
       {/* Floating UI Dots */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone opacity-40 z-0" />
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone-red z-0" />
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone opacity-30 z-20" />
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone-red z-20" />
       
       <style>{`
         .p5-menu-item.active {
