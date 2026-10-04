@@ -20,7 +20,8 @@ import {
   Menu,
   X,
   Award,
-  Eye
+  Eye,
+  Instagram
 } from 'lucide-react';
 import track from './track.mp3';
 
@@ -53,6 +54,8 @@ const resumeData = {
     phone: "+573046593793",
     location: "Envigado, Colombia",
     linkedin: "senki17david",
+    instagram: "https://www.instagram.com/4.david.z.h.4/",
+    tiktok: "https://www.tiktok.com/@senki.videos",
     summary: [
       "Mechanical Engineering undergraduate at Universidad EAFIT with a strong foundation in mechanical design, kinematic and static analysis, prototyping, and engineering problem-solving. Experienced in designing, simulating, and fabricating robotic mechanisms, including grippers and parallel manipulators integrated with collaborative robots. Skilled in data analysis using Excel, Python, and MATLAB, automation with Arduino, and CAD/modeling and simulation in SolidWorks.",
       "Global Korea Scholarship (GKS) exchange student at Kyung Hee University in South Korea, with research experience in energy efficiency and turbomachinery. I have contributed to projects involving robotic systems, magnetic levitation, process automation, human-powered vehicles, and data-driven engineering solutions.",
@@ -205,6 +208,13 @@ const resumeData = {
 };
 
 // --- Components ---
+// TikTok logo (lucide-react has no TikTok icon)
+const TikTokIcon = ({ className = '' }: { className?: string }) => (
+  <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z" />
+  </svg>
+);
+
 const SelectorPoints = () => {
   const [points, setPoints] = useState({ red: "", blue: "" });
 
@@ -740,6 +750,30 @@ export default function App() {
                       >
                         <Linkedin className="w-5 h-5 md:w-10 md:h-10" />
                         <span className="text-xs md:text-2xl">LinkedIn</span>
+                        <ExternalLink className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity w-4 h-4 md:w-6 md:h-6" />
+                      </a>
+                      <a 
+                        href={resumeData.profile.instagram} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        onMouseEnter={() => playSfx('hover')}
+                        onClick={() => playSfx('select')}
+                        className="p5-menu-item !bg-p5-black !text-p5-white hover:!bg-p5-cyan hover:!text-p5-black group flex items-center gap-2 md:gap-6 !py-2 md:!py-3 !px-3 md:!px-10 !text-sm md:!text-2xl"
+                      >
+                        <Instagram className="w-5 h-5 md:w-10 md:h-10" />
+                        <span className="text-xs md:text-2xl">Instagram</span>
+                        <ExternalLink className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity w-4 h-4 md:w-6 md:h-6" />
+                      </a>
+                      <a 
+                        href={resumeData.profile.tiktok} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        onMouseEnter={() => playSfx('hover')}
+                        onClick={() => playSfx('select')}
+                        className="p5-menu-item !bg-p5-black !text-p5-white hover:!bg-p5-cyan hover:!text-p5-black group flex items-center gap-2 md:gap-6 !py-2 md:!py-3 !px-3 md:!px-10 !text-sm md:!text-2xl"
+                      >
+                        <TikTokIcon className="w-5 h-5 md:w-10 md:h-10" />
+                        <span className="text-xs md:text-2xl">TikTok</span>
                         <ExternalLink className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity w-4 h-4 md:w-6 md:h-6" />
                       </a>
                     </div>
