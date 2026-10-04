@@ -20,7 +20,6 @@ import {
   Menu,
   X,
   Award,
-  Download,
   Eye
 } from 'lucide-react';
 import track from './track.mp3';
@@ -643,26 +642,16 @@ export default function App() {
                             )}
                             <div className="flex flex-wrap gap-2 mt-3">
                               {cert.file && (
-                                <>
-                                  <a
-                                    href={cert.file}
-                                    download
-                                    onClick={() => playSfx('select')}
-                                    className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-black px-3 py-1 hover:bg-p5-red transition-colors flex items-center gap-1"
-                                  >
-                                    <Download className="w-3 h-3 md:w-4 md:h-4" />
-                                    Download PDF
-                                  </a>
-                                  <a
-                                    href={cert.file}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-3 py-1 hover:bg-p5-black hover:text-p5-white transition-colors flex items-center gap-1"
-                                  >
-                                    <Eye className="w-3 h-3 md:w-4 md:h-4" />
-                                    View
-                                  </a>
-                                </>
+                                <a
+                                  href={cert.file}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() => playSfx('select')}
+                                  className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-3 py-1 hover:bg-p5-black hover:text-p5-white transition-colors flex items-center gap-1"
+                                >
+                                  <Eye className="w-3 h-3 md:w-4 md:h-4" />
+                                  View
+                                </a>
                               )}
                               {cert.url && (
                                 <a
