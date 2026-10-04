@@ -129,6 +129,15 @@
     background-size: 4px 4px;
   }
 
+  /* red halftone dots that fade out towards the centre of the screen */
+  .halftone-red {
+    background-image: radial-gradient(rgba(211, 18, 30, 0.55) 28%, transparent 30%);
+    background-size: 9px 9px;
+    -webkit-mask-image: radial-gradient(ellipse at 55% 45%, transparent 35%, #000 95%);
+    mask-image: radial-gradient(ellipse at 55% 45%, transparent 35%, #000 95%);
+    opacity: 0.6;
+  }
+
   /* Mobile optimizations */
   @media (max-width: 768px) {
     html, body {

@@ -231,6 +231,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const hoverSoundRef = useRef<HTMLAudioElement | null>(null);
   const selectSoundRef = useRef<HTMLAudioElement | null>(null);
@@ -322,6 +323,23 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-p5-black text-p5-white font-sans overflow-hidden flex flex-col md:flex-row">
+      {/* Animated background video, darkened so the star, dots and content stay readable */}
+      <video
+        className="fixed inset-0 w-full h-full object-cover pointer-events-none z-0"
+        poster="/BackgroundLoop.jpg"
+        autoPlay={!prefersReducedMotion}
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+      >
+        <source src="/BackgroundLoop.webm" type="video/webm" />
+        <source src="/BackgroundLoop.mp4" type="video/mp4" />
+      </video>
+      <div
+        className="fixed inset-0 pointer-events-none z-0"
+        style={{ background: 'radial-gradient(ellipse at 60% 45%, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.6) 60%, rgba(10,0,2,0.85) 100%)' }}
+      />
       <div className="scanline" />
       
       {/* Background Assets */}
@@ -738,7 +756,7 @@ export default function App() {
 
       {/* Transitional Graphics & Accents */}
       <motion.div 
-        className="fixed -bottom-20 -right-20 opacity-10 pointer-events-none z-0"
+        className="fixed -bottom-20 -right-20 opacity-25 pointer-events-none z-0"
         animate={{ rotate: 360 }}
         transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
       >
@@ -746,7 +764,8 @@ export default function App() {
       </motion.div>
 
       {/* Floating UI Dots */}
-      <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone opacity-10 z-0" />
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone opacity-40 z-0" />
+      <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone-red z-0" />
       
       <style>{`
         .p5-menu-item.active {
