@@ -406,7 +406,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Content Area */}
-      <main className="relative z-10 w-full md:w-2/3 md:ml-auto h-full md:p-20 p-4 sm:p-6 pt-20 md:pt-0 flex items-center overflow-hidden">
+      <main className="relative z-10 w-full md:w-2/3 md:ml-auto md:h-screen md:p-20 p-4 sm:p-6 pt-20 md:pt-16 flex items-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
