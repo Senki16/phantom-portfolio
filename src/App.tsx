@@ -69,7 +69,7 @@ const resumeData = {
     },
     {
       role: "Academic Assistant",
-      company: "Universidad EAFIT (Research Group)",
+      company: "EAFIT University (Research Group)",
       period: "2024",
       location: "Medellin",
       desc: "Worked in a research group focused on motorcycle efficiency and fuel consumption. Performed data analysis and information processing, as well as maintenance labors."
@@ -77,7 +77,7 @@ const resumeData = {
   ],
   education: [
     {
-      school: "Universidad EAFIT",
+      school: "EAFIT University",
       degree: "Mechanical Engineering",
       period: "2021 - Present"
     },
@@ -179,7 +179,7 @@ const resumeData = {
   ],
   extracurricular: [
     { title: "Taekwondo", company: "Dragon Rojo Club", period: "2022–Present", note: "Black Belt" },
-    { title: "Turbomachinery Research", company: "Universidad EAFIT", period: "2023" },
+    { title: "Turbomachinery Research", company: "EAFIT University", period: "2023" },
     { title: "Japanese Study", company: "Haru no Hinata Academy", period: "2023–Present" },
     { title: "Swimming", company: "Brazada Club", period: "2016–2019" }
   ],
