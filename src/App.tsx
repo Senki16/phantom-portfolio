@@ -54,7 +54,11 @@ const resumeData = {
     phone: "+573046593793",
     location: "Envigado, Colombia",
     linkedin: "senki17david",
-    summary: "Mechanical Engineering student at Universidad EAFIT. Experience in data analysis (Excel, Python, MATLAB), automation with Arduino, and modeling/simulation in SolidWorks. Characterized by discipline, analytical thinking, and organization, with resilience and strong problem-solving skills. Black belt in taekwondo, which has strengthened my discipline and consistency."
+    summary: [
+      "Mechanical Engineering undergraduate at Universidad EAFIT with a strong foundation in mechanical design, kinematic and static analysis, prototyping, and engineering problem-solving. Experienced in designing, simulating, and fabricating robotic mechanisms, including grippers and parallel manipulators integrated with collaborative robots. Skilled in data analysis using Excel, Python, and MATLAB, automation with Arduino, and CAD/modeling and simulation in SolidWorks.",
+      "Global Korea Scholarship (GKS) exchange student at Kyung Hee University in South Korea, with research experience in energy efficiency and turbomachinery. I have contributed to projects involving robotic systems, magnetic levitation, process automation, human-powered vehicles, and data-driven engineering solutions.",
+      "Interested in robotics, robot manipulation, intelligent control, automation, simulation, CAD/CAM, data analysis, mechanical design, and emerging technologies. Also experienced with Unity and interested in video game development. Characterized by discipline, analytical thinking, resilience, and consistency, strengthened through my experience as a Taekwondo black belt."
+    ]
   },
   experience: [
     {
@@ -459,9 +463,11 @@ export default function App() {
                         </p>
                       </div>
                     </div>
-                    <p className="text-sm md:text-xl leading-relaxed italic border-l-8 border-p5-red pl-4 md:pl-6 py-2">
-                      {resumeData.profile.summary}
-                    </p>
+                    <div className="border-l-8 border-p5-red pl-4 md:pl-6 py-2 space-y-3 md:space-y-5">
+                      {resumeData.profile.summary.map((para, i) => (
+                        <p key={i} className="text-sm md:text-lg leading-relaxed italic">{para}</p>
+                      ))}
+                    </div>
                   </div>
                 )}
 
