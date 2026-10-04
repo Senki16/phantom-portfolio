@@ -18,12 +18,15 @@ import {
   Zap,
   Star,
   Menu,
-  X
+  X,
+  Award,
+  Download,
+  Eye
 } from 'lucide-react';
 import track from './track.mp3';
 
 // --- Types ---
-type SectionId = 'home' | 'experience' | 'education' | 'projects' | 'skills' | 'achievements' | 'extracurricular' | 'contact';
+type SectionId = 'home' | 'experience' | 'education' | 'projects' | 'skills' | 'certificates' | 'achievements' | 'extracurricular' | 'contact';
 
 interface Section {
   id: SectionId;
@@ -37,6 +40,7 @@ const sections: Section[] = [
   { id: 'education', label: 'Education' },
   { id: 'projects', label: 'Projects' },
   { id: 'skills', label: 'Skills' },
+  { id: 'certificates', label: 'Certificates' },
   { id: 'achievements', label: 'Achievements' },
   { id: 'extracurricular', label: 'Extracurricular' },
   { id: 'contact', label: 'Contact' },
@@ -106,6 +110,56 @@ const resumeData = {
       { name: "Korean", level: "Basic" }
     ]
   },
+  certificates: [
+    {
+      name: "Global Korea Scholarship (GKS)",
+      issuer: "National Institute for International Education (NIIED)",
+      date: "Mar–Jun 2025",
+      credentialId: "GKSES 250701-0016",
+      desc: "Successfully completed the Global Korea Scholarship Program for Foreign Exchange Students at Kyung Hee University, South Korea.",
+      file: "/certificates/GKS_Certificate_David_Zuluaga.pdf"
+    },
+    {
+      name: "IELTS Academic",
+      issuer: "IELTS Official",
+      date: "Nov 2024 · Valid until Nov 2026",
+      credentialId: "2420016073ZULD1IHA",
+      desc: "Overall Band Score 6.5 (CEFR B2) · Listening 6.5 · Reading 7.0 · Writing 6.5 · Speaking 6.0.",
+      skills: ["English"],
+      file: "/certificates/IELTS_Academic_TRF_David_Zuluaga.pdf"
+    },
+    {
+      name: "EF SET English Certificate 80/100 (C2 Proficient)",
+      issuer: "EF SET",
+      desc: "Standardized English test result at the C2 Proficient level.",
+      skills: ["English"],
+      url: "https://cert.efset.org/en/uQG6o1"
+    },
+    {
+      name: "Stateflow Onramp",
+      issuer: "MathWorks",
+      date: "Aug 2024",
+      desc: "Successfully completed 100% of the self-paced Stateflow Onramp training course.",
+      skills: ["Stateflow", "Finite State Machines"],
+      file: "/certificates/Stateflow_Onramp_David_Zuluaga.pdf"
+    },
+    {
+      name: "Simulink Onramp",
+      issuer: "MathWorks",
+      date: "Jul 2024",
+      desc: "Successfully completed 100% of the self-paced Simulink Onramp training course.",
+      skills: ["Simulink"],
+      file: "/certificates/Simulink_Onramp_David_Zuluaga.pdf"
+    },
+    {
+      name: "MATLAB Onramp",
+      issuer: "MathWorks",
+      date: "Jul 2024",
+      desc: "Successfully completed 100% of the self-paced MATLAB Onramp training course.",
+      skills: ["MATLAB"],
+      file: "/certificates/MATLAB_Onramp_David_Zuluaga.pdf"
+    }
+  ] as { name: string; issuer: string; date?: string; credentialId?: string; desc: string; skills?: string[]; file?: string; url?: string }[],
   achievements: [
     { title: "GKS Scholarship", body: "Global Korea Scholarship for academic exchange (2025)." },
     { title: "Taekwondo Silver Medal", body: "Silver medal in Taekwondo Poomsae (2024)." },
@@ -120,6 +174,7 @@ const resumeData = {
     { title: "Swimming", company: "Brazada Club", period: "2016–2019" }
   ],
   portfolio: [
+    { name: "XRP Robot Trajectory Mapping", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
     { name: "Tripteron CNC Router", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
     { name: "Human Powered Vehicles (HPV)", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
@@ -267,6 +322,16 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-p5-black text-p5-white font-sans overflow-hidden flex flex-col md:flex-row">
+      {/* Background image behind everything */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{
+          backgroundImage: "url('/MainBG.webp')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      />
       <div className="scanline" />
       
       {/* Background Assets */}
@@ -341,7 +406,7 @@ export default function App() {
       </AnimatePresence>
 
       {/* Content Area */}
-      <main className="w-full md:w-2/3 md:ml-auto h-full md:p-20 p-4 sm:p-6 pt-20 md:pt-0 flex items-center overflow-hidden">
+      <main className="relative z-10 w-full md:w-2/3 md:ml-auto h-full md:p-20 p-4 sm:p-6 pt-20 md:pt-0 flex items-center overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
@@ -521,6 +586,80 @@ export default function App() {
                         </div>
                       </section>
                     </div>
+                  </div>
+                )}
+
+                {activeSection === 'certificates' && (
+                  <div className="grid grid-cols-1 gap-3 md:gap-6">
+                    {resumeData.certificates.map((cert, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: i * 0.05 }}
+                        whileHover={{ scale: 1.02, x: 10 }}
+                        onMouseEnter={() => playSfx('hover')}
+                        className="bg-gray-100 p-3 md:p-6 border-l-8 border-p5-red relative"
+                      >
+                        <div className="flex flex-col md:flex-row md:items-start gap-3 md:gap-6">
+                          <div className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 bg-p5-black text-p5-red flex items-center justify-center skew-x-[-10deg]">
+                            <Award className="w-6 h-6 md:w-8 md:h-8" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-lg md:text-2xl font-display uppercase leading-tight">{cert.name}</h3>
+                            <p className="text-xs md:text-base font-black bg-p5-black text-p5-white inline-block px-3 py-1 italic mt-1">{cert.issuer}</p>
+                            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 font-mono text-xs md:text-sm text-gray-600">
+                              {cert.date && <span>{cert.date}</span>}
+                              {cert.credentialId && <span>Credential ID: {cert.credentialId}</span>}
+                            </div>
+                            <p className="text-xs md:text-base italic mt-2 opacity-80">{cert.desc}</p>
+                            {cert.skills && (
+                              <div className="flex flex-wrap gap-2 mt-2">
+                                {cert.skills.map(sk => (
+                                  <span key={sk} className="text-xs bg-p5-red text-p5-white px-2 py-0.5 skew-x-[-10deg]">{sk}</span>
+                                ))}
+                              </div>
+                            )}
+                            <div className="flex flex-wrap gap-2 mt-3">
+                              {cert.file && (
+                                <>
+                                  <a
+                                    href={cert.file}
+                                    download
+                                    onClick={() => playSfx('select')}
+                                    className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-black px-3 py-1 hover:bg-p5-red transition-colors flex items-center gap-1"
+                                  >
+                                    <Download className="w-3 h-3 md:w-4 md:h-4" />
+                                    Download PDF
+                                  </a>
+                                  <a
+                                    href={cert.file}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-3 py-1 hover:bg-p5-black hover:text-p5-white transition-colors flex items-center gap-1"
+                                  >
+                                    <Eye className="w-3 h-3 md:w-4 md:h-4" />
+                                    View
+                                  </a>
+                                </>
+                              )}
+                              {cert.url && (
+                                <a
+                                  href={cert.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={() => playSfx('select')}
+                                  className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-black px-3 py-1 hover:bg-p5-red transition-colors flex items-center gap-1"
+                                >
+                                  <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
+                                  Show credential
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
                   </div>
                 )}
 
