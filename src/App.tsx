@@ -322,16 +322,6 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-p5-black text-p5-white font-sans overflow-hidden flex flex-col md:flex-row">
-      {/* Background image behind everything */}
-      <div
-        className="fixed inset-0 z-0 pointer-events-none"
-        style={{
-          backgroundImage: "url('/MainBG.webp')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      />
       <div className="scanline" />
       
       {/* Background Assets */}
