@@ -64,6 +64,13 @@ const resumeData = {
   },
   experience: [
     {
+      role: "Technology Coordinator",
+      company: "Construcciones A.P. S.A.S. · Part-time",
+      period: "Oct 2026 - Present",
+      location: "Sabaneta, Antioquia, Colombia · Hybrid",
+      desc: "Lead the development of business applications, process automation, and digital solutions to optimize operations, improve efficiency, and drive technology innovation across the organization."
+    },
+    {
       role: "Freelance App Developer",
       company: "Self-employed",
       period: "Aug 2026 - Present",
@@ -104,6 +111,7 @@ const resumeData = {
       { name: "MATLAB", level: "Intermediate" },
       { name: "Arduino", level: "Intermediate" },
       { name: "YOLOv5", level: "Basic" },
+      { name: "YOLOX-nano", level: "Basic" },
       { name: "Unity", level: "Intermediate" },
       { name: "Aseprite", level: "Intermediate" },
       { name: "LaTeX", level: "Intermediate" },
@@ -174,10 +182,10 @@ const resumeData = {
     }
   ] as { name: string; issuer: string; date?: string; credentialId?: string; desc: string; skills?: string[]; file?: string; url?: string }[],
   achievements: [
-    { title: "GKS Scholarship", body: "Global Korea Scholarship for academic exchange (2025)." },
-    { title: "Taekwondo Silver Medal", body: "Silver medal in Taekwondo Poomsae (2024)." },
+    { title: "GKS Scholarship", body: "Global Korea Scholarship for academic exchange (2025).", image: "/achievements/gks-korea.webp" },
+    { title: "Taekwondo Silver Medal", body: "Silver medal in Taekwondo Poomsae (2024).", image: "/achievements/taekwondo-medal.webp" },
     { title: "Physics Challenge Bronze", body: "Bronze medal – EIA Physics Challenge (2019)." },
-    { title: "Model United Nations", body: "Selected to represent NotreDame School at Yale University (2015)." },
+    { title: "Model United Nations", body: "Selected to represent NotreDame School at Yale University (2015).", image: "/achievements/yale-mun.jpg" },
     { title: "Symphony Orchestra", body: "Selected violinist in the Youth Symphony Orchestra of the Dominican Republic (2015)." }
   ],
   extracurricular: [
@@ -251,6 +259,14 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [viewerImage, setViewerImage] = useState<{ src: string; title: string } | null>(null);
+
+  useEffect(() => {
+    if (!viewerImage) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setViewerImage(null); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [viewerImage]);
   const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const hoverSoundRef = useRef<HTMLAudioElement | null>(null);
@@ -675,20 +691,41 @@ export default function App() {
                 )}
 
                 {activeSection === 'achievements' && (
-                  <div className="space-y-3 md:space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
                     {resumeData.achievements.map((ach, i) => (
                       <motion.div 
                         key={i}
-                        whileHover={{ scale: 1.02, x: 10 }}
+                        whileHover={{ scale: 1.02 }}
                         onMouseEnter={() => playSfx('hover')}
-                        className="bg-p5-black text-p5-white p-3 md:p-6 relative overflow-hidden"
-                        style={{ clipPath: 'polygon(0% 0%, 100% 5%, 95% 100%, 0% 95%)' }}
+                        className="bg-p5-black text-p5-white relative overflow-hidden flex flex-col"
+                        style={{ clipPath: 'polygon(0% 0%, 100% 2%, 97% 100%, 0% 98%)' }}
                       >
-                        <div className="absolute top-0 right-0 p-2 opacity-20">
-                          <Trophy className="w-10 md:w-20 h-10 md:h-20" />
+                        {ach.image ? (
+                          <button
+                            type="button"
+                            onClick={() => { playSfx('select'); setViewerImage({ src: ach.image!, title: ach.title }); }}
+                            className="relative block w-full aspect-video overflow-hidden group cursor-zoom-in"
+                            aria-label={`View photo: ${ach.title}`}
+                          >
+                            <img
+                              src={ach.image}
+                              alt={ach.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
+                            />
+                            <div className="absolute inset-0 bg-p5-red/0 group-hover:bg-p5-red/20 transition-colors flex items-center justify-center">
+                              <Eye className="w-8 h-8 md:w-12 md:h-12 opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
+                            </div>
+                          </button>
+                        ) : (
+                          <div className="w-full aspect-video flex items-center justify-center bg-gradient-to-br from-p5-black to-p5-red/40">
+                            <Trophy className="w-16 h-16 md:w-24 md:h-24 opacity-40" />
+                          </div>
+                        )}
+                        <div className="p-3 md:p-5">
+                          <h3 className="text-lg md:text-2xl font-display uppercase text-p5-red mb-1 md:mb-2">{ach.title}</h3>
+                          <p className="text-xs md:text-base italic">{ach.body}</p>
                         </div>
-                        <h3 className="text-lg md:text-3xl font-display uppercase text-p5-red mb-1 md:mb-2">{ach.title}</h3>
-                        <p className="text-xs md:text-lg italic">{ach.body}</p>
                       </motion.div>
                     ))}
                   </div>
@@ -821,6 +858,47 @@ export default function App() {
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone opacity-[0.18] z-20" />
       <div className="fixed top-0 left-0 w-full h-full pointer-events-none halftone-red z-0" />
       
+      {/* Achievement Image Viewer */}
+      <AnimatePresence>
+        {viewerImage && (
+          <motion.div
+            className="fixed inset-0 z-[100] bg-p5-black/90 flex items-center justify-center p-4 md:p-12 cursor-zoom-out"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setViewerImage(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={viewerImage.title}
+          >
+            <motion.figure
+              className="relative max-w-5xl w-full flex flex-col items-center cursor-default"
+              initial={{ scale: 0.9, rotate: -2 }}
+              animate={{ scale: 1, rotate: 0 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={viewerImage.src}
+                alt={viewerImage.title}
+                className="max-h-[80vh] w-auto max-w-full object-contain border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+              />
+              <figcaption className="mt-4 bg-p5-red text-p5-white font-display uppercase text-lg md:text-3xl px-4 py-1 -skew-x-12">
+                {viewerImage.title}
+              </figcaption>
+              <button
+                type="button"
+                onClick={() => setViewerImage(null)}
+                className="absolute -top-3 -right-3 md:-top-5 md:-right-5 bg-p5-red text-p5-white p-2 border-2 border-p5-white hover:bg-p5-white hover:text-p5-red transition-colors"
+                aria-label="Close image"
+              >
+                <X size={24} />
+              </button>
+            </motion.figure>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <style>{`
         .p5-menu-item.active {
           transform: translateX(30px) translateY(-10px) skewX(-15deg);
