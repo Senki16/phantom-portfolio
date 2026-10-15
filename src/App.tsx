@@ -189,7 +189,7 @@ const resumeData = {
   achievements: [
     { title: "GKS Scholarship", body: "Global Korea Scholarship for academic exchange (2025).", image: "/achievements/gks-korea.webp" },
     { title: "Taekwondo Silver Medal", body: "Silver medal in Taekwondo Poomsae (2024).", image: "/achievements/taekwondo-medal.webp" },
-    { title: "Physics Challenge Bronze", body: "Bronze medal – EIA Physics Challenge (2019)." },
+    { title: "Physics Challenge Bronze", body: "Bronze medal – EIA Physics Challenge (2019).", image: "/achievements/reto-eia.webp" },
     { title: "Model United Nations", body: "Selected to represent NotreDame School at Yale University (2015).", image: "/achievements/yale-mun.jpg" },
     { title: "Symphony Orchestra", body: "Selected violinist in the Youth Symphony Orchestra of the Dominican Republic (2015)." }
   ],
@@ -735,7 +735,7 @@ export default function App() {
                               src={ach.image}
                               alt={ach.title}
                               loading="lazy"
-                              className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
+                              className="w-full h-full object-cover object-[center_25%] grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-300"
                             />
                             <div className="absolute inset-0 bg-p5-red/0 group-hover:bg-p5-red/20 transition-colors flex items-center justify-center">
                               <Eye className="w-8 h-8 md:w-12 md:h-12 opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
