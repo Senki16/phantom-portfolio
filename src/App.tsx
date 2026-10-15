@@ -138,7 +138,8 @@ const resumeData = {
       date: "Mar–Jun 2025",
       credentialId: "GKSES 250701-0016",
       desc: "Successfully completed the Global Korea Scholarship Program for Foreign Exchange Students at Kyung Hee University, South Korea.",
-      file: "/certificates/GKS_Certificate_David_Zuluaga.pdf"
+      file: "/certificates/GKS_Certificate_David_Zuluaga.pdf",
+      thumb: "/certificates/thumbs/GKS_Certificate_David_Zuluaga.jpg"
     },
     {
       name: "IELTS Academic",
@@ -147,7 +148,8 @@ const resumeData = {
       credentialId: "2420016073ZULD1IHA",
       desc: "Overall Band Score 6.5 (CEFR B2) · Listening 6.5 · Reading 7.0 · Writing 6.5 · Speaking 6.0.",
       skills: ["English"],
-      file: "/certificates/IELTS_Academic_TRF_David_Zuluaga.pdf"
+      file: "/certificates/IELTS_Academic_TRF_David_Zuluaga.pdf",
+      thumb: "/certificates/thumbs/IELTS_Academic_TRF_David_Zuluaga.jpg"
     },
     {
       name: "EF SET English Certificate 80/100 (C2 Proficient)",
@@ -162,7 +164,8 @@ const resumeData = {
       date: "Aug 2024",
       desc: "Successfully completed 100% of the self-paced Stateflow Onramp training course.",
       skills: ["Stateflow", "Finite State Machines"],
-      file: "/certificates/Stateflow_Onramp_David_Zuluaga.pdf"
+      file: "/certificates/Stateflow_Onramp_David_Zuluaga.pdf",
+      thumb: "/certificates/thumbs/Stateflow_Onramp_David_Zuluaga.jpg"
     },
     {
       name: "Simulink Onramp",
@@ -170,7 +173,8 @@ const resumeData = {
       date: "Jul 2024",
       desc: "Successfully completed 100% of the self-paced Simulink Onramp training course.",
       skills: ["Simulink"],
-      file: "/certificates/Simulink_Onramp_David_Zuluaga.pdf"
+      file: "/certificates/Simulink_Onramp_David_Zuluaga.pdf",
+      thumb: "/certificates/thumbs/Simulink_Onramp_David_Zuluaga.jpg"
     },
     {
       name: "MATLAB Onramp",
@@ -178,9 +182,10 @@ const resumeData = {
       date: "Jul 2024",
       desc: "Successfully completed 100% of the self-paced MATLAB Onramp training course.",
       skills: ["MATLAB"],
-      file: "/certificates/MATLAB_Onramp_David_Zuluaga.pdf"
+      file: "/certificates/MATLAB_Onramp_David_Zuluaga.pdf",
+      thumb: "/certificates/thumbs/MATLAB_Onramp_David_Zuluaga.jpg"
     }
-  ] as { name: string; issuer: string; date?: string; credentialId?: string; desc: string; skills?: string[]; file?: string; url?: string }[],
+  ] as { name: string; issuer: string; date?: string; credentialId?: string; desc: string; skills?: string[]; file?: string; thumb?: string; url?: string }[],
   achievements: [
     { title: "GKS Scholarship", body: "Global Korea Scholarship for academic exchange (2025).", image: "/achievements/gks-korea.webp" },
     { title: "Taekwondo Silver Medal", body: "Silver medal in Taekwondo Poomsae (2024).", image: "/achievements/taekwondo-medal.webp" },
@@ -259,7 +264,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [viewerImage, setViewerImage] = useState<{ src: string; title: string } | null>(null);
+  const [viewerImage, setViewerImage] = useState<{ src: string; title: string; kind?: 'image' | 'pdf'; thumb?: string } | null>(null);
 
   useEffect(() => {
     if (!viewerImage) return;
@@ -627,62 +632,81 @@ export default function App() {
                 )}
 
                 {activeSection === 'certificates' && (
-                  <div className="grid grid-cols-1 gap-3 md:gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
                     {resumeData.certificates.map((cert, i) => (
                       <motion.div
                         key={i}
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: i * 0.05 }}
-                        whileHover={{ scale: 1.02, x: 10 }}
+                        whileHover={{ scale: 1.02 }}
                         onMouseEnter={() => playSfx('hover')}
-                        className="bg-gray-100 p-3 md:p-6 border-l-8 border-p5-red relative"
+                        className="bg-gray-100 border-b-8 border-p5-red relative flex flex-col"
                       >
-                        <div className="flex flex-col md:flex-row md:items-start gap-3 md:gap-6">
-                          <div className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 bg-p5-black text-p5-red flex items-center justify-center skew-x-[-10deg]">
-                            <Award className="w-6 h-6 md:w-8 md:h-8" />
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-lg md:text-2xl font-display uppercase leading-tight">{cert.name}</h3>
-                            <p className="text-xs md:text-base font-black bg-p5-black text-p5-white inline-block px-3 py-1 italic mt-1">{cert.issuer}</p>
-                            <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 font-mono text-xs md:text-sm text-gray-600">
-                              {cert.date && <span>{cert.date}</span>}
-                              {cert.credentialId && <span>Credential ID: {cert.credentialId}</span>}
-                            </div>
-                            <p className="text-xs md:text-base italic mt-2 opacity-80">{cert.desc}</p>
-                            {cert.skills && (
-                              <div className="flex flex-wrap gap-2 mt-2">
-                                {cert.skills.map(sk => (
-                                  <span key={sk} className="text-xs bg-p5-red text-p5-white px-2 py-0.5 skew-x-[-10deg]">{sk}</span>
-                                ))}
-                              </div>
+                        {cert.file ? (
+                          <button
+                            type="button"
+                            onClick={() => { playSfx('select'); setViewerImage({ src: cert.file!, title: cert.name, kind: 'pdf', thumb: cert.thumb }); }}
+                            className="relative block w-full aspect-video overflow-hidden bg-p5-black group cursor-zoom-in"
+                            aria-label={`View certificate: ${cert.name}`}
+                          >
+                            {cert.thumb ? (
+                              <img
+                                src={cert.thumb}
+                                alt={cert.name}
+                                loading="lazy"
+                                className="w-full h-full object-contain p-2 group-hover:scale-105 transition-transform duration-300"
+                              />
+                            ) : (
+                              <Award className="w-16 h-16 text-p5-red m-auto" />
                             )}
-                            <div className="flex flex-wrap gap-2 mt-3">
-                              {cert.file && (
-                                <a
-                                  href={cert.file}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={() => playSfx('select')}
-                                  className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-3 py-1 hover:bg-p5-black hover:text-p5-white transition-colors flex items-center gap-1"
-                                >
-                                  <Eye className="w-3 h-3 md:w-4 md:h-4" />
-                                  View
-                                </a>
-                              )}
-                              {cert.url && (
-                                <a
-                                  href={cert.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={() => playSfx('select')}
-                                  className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-black px-3 py-1 hover:bg-p5-red transition-colors flex items-center gap-1"
-                                >
-                                  <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
-                                  Show credential
-                                </a>
-                              )}
+                            <div className="absolute inset-0 bg-p5-red/0 group-hover:bg-p5-red/20 transition-colors flex items-center justify-center">
+                              <Eye className="w-8 h-8 md:w-12 md:h-12 text-p5-white opacity-0 group-hover:opacity-100 transition-opacity drop-shadow-lg" />
                             </div>
+                          </button>
+                        ) : (
+                          <div className="w-full aspect-video flex items-center justify-center bg-gradient-to-br from-p5-black to-p5-red/40">
+                            <Award className="w-16 h-16 md:w-24 md:h-24 text-p5-white opacity-40" />
+                          </div>
+                        )}
+                        <div className="p-3 md:p-5 flex-1 flex flex-col">
+                          <h3 className="text-lg md:text-xl font-display uppercase leading-tight">{cert.name}</h3>
+                          <p className="text-xs md:text-sm font-black bg-p5-black text-p5-white self-start px-3 py-1 italic mt-1">{cert.issuer}</p>
+                          <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2 font-mono text-xs text-gray-600">
+                            {cert.date && <span>{cert.date}</span>}
+                            {cert.credentialId && <span>ID: {cert.credentialId}</span>}
+                          </div>
+                          <p className="text-xs md:text-sm italic mt-2 opacity-80">{cert.desc}</p>
+                          {cert.skills && (
+                            <div className="flex flex-wrap gap-2 mt-2">
+                              {cert.skills.map(sk => (
+                                <span key={sk} className="text-xs bg-p5-red text-p5-white px-2 py-0.5 skew-x-[-10deg]">{sk}</span>
+                              ))}
+                            </div>
+                          )}
+                          <div className="flex flex-wrap gap-2 mt-auto pt-3">
+                            {cert.file && (
+                              <button
+                                type="button"
+                                onClick={() => { playSfx('select'); setViewerImage({ src: cert.file!, title: cert.name, kind: 'pdf', thumb: cert.thumb }); }}
+                                className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-3 py-1 hover:bg-p5-black hover:text-p5-white transition-colors flex items-center gap-1"
+                              >
+                                <Eye className="w-3 h-3 md:w-4 md:h-4" />
+                                View
+                              </button>
+                            )}
+                            {cert.url && (
+                              <a
+                                href={cert.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={() => playSfx('select')}
+                                className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-black px-3 py-1 hover:bg-p5-red transition-colors flex items-center gap-1"
+                              >
+                                <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
+                                Show credential
+                              </a>
+                            )}
                           </div>
                         </div>
                       </motion.div>
@@ -878,11 +902,36 @@ export default function App() {
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <img
-                src={viewerImage.src}
-                alt={viewerImage.title}
-                className="max-h-[80vh] w-auto max-w-full object-contain border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
-              />
+              {viewerImage.kind === 'pdf' ? (
+                <object
+                  data={`${viewerImage.src}#view=FitH`}
+                  type="application/pdf"
+                  className="w-full h-[75vh] bg-p5-white border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+                  aria-label={viewerImage.title}
+                >
+                  {/* Fallback for browsers that can't render PDFs inline (e.g. most mobile browsers) */}
+                  <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-p5-black p-4">
+                    {viewerImage.thumb && (
+                      <img src={viewerImage.thumb} alt={viewerImage.title} className="max-h-[60vh] w-auto max-w-full object-contain" />
+                    )}
+                    <a
+                      href={viewerImage.src}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm uppercase tracking-wide text-p5-white bg-p5-red px-4 py-2 hover:bg-p5-white hover:text-p5-red transition-colors flex items-center gap-2"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Open full PDF
+                    </a>
+                  </div>
+                </object>
+              ) : (
+                <img
+                  src={viewerImage.src}
+                  alt={viewerImage.title}
+                  className="max-h-[80vh] w-auto max-w-full object-contain border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+                />
+              )}
               <figcaption className="mt-4 bg-p5-red text-p5-white font-display uppercase text-lg md:text-3xl px-4 py-1 -skew-x-12">
                 {viewerImage.title}
               </figcaption>
