@@ -207,7 +207,7 @@ const resumeData = {
     { title: "Swimming", company: "Brazada Club", period: "2016–2019" }
   ],
   portfolio: [
-    { name: "XRP Robot Trajectory Mapping", image: "/projects/xrp.webp", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
+    { name: "XRP Robot Trajectory Mapping", image: "https://i.ytimg.com/vi/agATlmuYTp4/hqdefault.jpg", videoEmbed: "https://www.youtube.com/embed/agATlmuYTp4", videoAspect: "16/9", videoUrl: "https://youtu.be/agATlmuYTp4", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
     { name: "Tripteron CNC Router", image: "/projects/tripteron.webp", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoEmbed: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7295993868485836802?compact=1", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
     { name: "Human Powered Vehicles (HPV)", image: "/projects/hpv.webp", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
@@ -271,7 +271,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [viewerImage, setViewerImage] = useState<{ src: string; title: string; kind?: 'image' | 'pdf' | 'embed'; thumb?: string; link?: string } | null>(null);
+  const [viewerImage, setViewerImage] = useState<{ src: string; title: string; kind?: 'image' | 'pdf' | 'embed'; thumb?: string; link?: string; aspect?: string } | null>(null);
 
   useEffect(() => {
     if (!viewerImage) return;
@@ -539,28 +539,49 @@ export default function App() {
                         {project.image ? (
                           <button
                             type="button"
-                            onClick={() => { playSfx('select'); setViewerImage({ src: project.image!, title: project.name }); }}
-                            className="relative block w-full aspect-[16/10] overflow-hidden bg-p5-white cursor-zoom-in"
-                            aria-label={`View preview: ${project.name}`}
+                            onClick={() => {
+                              playSfx('select');
+                              setViewerImage(project.videoEmbed
+                                ? { src: project.videoEmbed, title: project.name, kind: 'embed', link: project.videoUrl, aspect: project.videoAspect }
+                                : { src: project.image!, title: project.name });
+                            }}
+                            className={`relative block w-full aspect-[16/10] overflow-hidden bg-p5-white ${project.videoEmbed ? 'cursor-pointer' : 'cursor-zoom-in'}`}
+                            aria-label={`${project.videoEmbed ? 'Play video' : 'View preview'}: ${project.name}`}
                           >
                             <img
                               src={project.image}
                               alt={project.name}
                               loading="lazy"
-                              className={`w-full h-full ${project.imageCover ? 'object-cover object-top' : 'object-contain'} group-hover:scale-105 transition-transform duration-300`}
+                              className={`w-full h-full ${project.videoEmbed ? 'object-cover' : project.imageCover ? 'object-cover object-top' : 'object-contain'} group-hover:scale-105 transition-transform duration-300`}
                             />
+                            {project.videoEmbed && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-p5-black/20">
+                                <div className="w-10 h-10 md:w-14 md:h-14 bg-p5-red text-p5-white flex items-center justify-center -skew-x-12 shadow-[4px_4px_0_#fff] group-hover:scale-110 transition-transform">
+                                  <Play className="w-5 h-5 md:w-7 md:h-7 fill-current skew-x-12" />
+                                </div>
+                              </div>
+                            )}
                           </button>
                         ) : project.videoEmbed ? (
                           <button
                             type="button"
-                            onClick={() => { playSfx('select'); setViewerImage({ src: project.videoEmbed!, title: project.name, kind: 'embed', link: project.videoUrl }); }}
-                            className="relative w-full aspect-[16/10] flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-p5-black to-p5-red/60 text-p5-white cursor-pointer"
+                            onClick={() => { playSfx('select'); setViewerImage({ src: project.videoEmbed!, title: project.name, kind: 'embed', link: project.videoUrl, aspect: project.videoAspect }); }}
+                            className="relative block w-full aspect-[16/10] overflow-hidden bg-p5-black cursor-pointer"
                             aria-label={`Play video: ${project.name}`}
                           >
-                            <div className="w-12 h-12 md:w-16 md:h-16 bg-p5-red flex items-center justify-center -skew-x-12 shadow-[4px_4px_0_#fff] group-hover:scale-110 transition-transform">
-                              <Play className="w-6 h-6 md:w-8 md:h-8 fill-current skew-x-12" />
+                            {/* The embedded post itself acts as the thumbnail; clicks go to the button */}
+                            <iframe
+                              src={project.videoEmbed}
+                              title={`${project.name} preview`}
+                              loading="lazy"
+                              tabIndex={-1}
+                              className="absolute inset-0 w-full h-full pointer-events-none"
+                            />
+                            <div className="absolute inset-0 flex items-center justify-center bg-p5-black/20">
+                              <div className="w-10 h-10 md:w-14 md:h-14 bg-p5-red text-p5-white flex items-center justify-center -skew-x-12 shadow-[4px_4px_0_#fff] group-hover:scale-110 transition-transform">
+                                <Play className="w-5 h-5 md:w-7 md:h-7 fill-current skew-x-12" />
+                              </div>
                             </div>
-                            <span className="text-[10px] md:text-xs uppercase tracking-widest font-bold">Watch video</span>
                           </button>
                         ) : (
                           <div className="w-full aspect-[16/10] flex items-center justify-center bg-gradient-to-br from-p5-black to-p5-red/50">
@@ -961,7 +982,10 @@ export default function App() {
                   <iframe
                     src={viewerImage.src}
                     title={viewerImage.title}
-                    className="w-full max-w-3xl aspect-[504/399] max-h-[75vh] bg-p5-white border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+                    className="w-full max-w-3xl max-h-[75vh] bg-p5-white border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+                    style={{ aspectRatio: viewerImage.aspect ?? '504/399' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
                   />
                   {viewerImage.link && (
@@ -971,8 +995,11 @@ export default function App() {
                       rel="noopener noreferrer"
                       className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-red px-3 py-1 hover:bg-p5-white hover:text-p5-red transition-colors flex items-center gap-2"
                     >
-                      <Linkedin className="w-4 h-4" />
-                      Open on LinkedIn
+                      {viewerImage.link.includes('youtu') ? (
+                        <><ExternalLink className="w-4 h-4" /> Open on YouTube</>
+                      ) : (
+                        <><Linkedin className="w-4 h-4" /> Open on LinkedIn</>
+                      )}
                     </a>
                   )}
                 </div>
