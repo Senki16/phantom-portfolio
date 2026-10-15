@@ -21,7 +21,8 @@ import {
   X,
   Award,
   Eye,
-  Instagram
+  Instagram,
+  Play
 } from 'lucide-react';
 import track from './track.mp3';
 
@@ -208,7 +209,7 @@ const resumeData = {
   portfolio: [
     { name: "XRP Robot Trajectory Mapping", image: "/projects/xrp.webp", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
     { name: "Tripteron CNC Router", image: "/projects/tripteron.webp", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
-    { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
+    { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoEmbed: "https://www.linkedin.com/embed/feed/update/urn:li:activity:7295993898923884545", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
     { name: "Human Powered Vehicles (HPV)", image: "/projects/hpv.webp", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
     { name: "Pneumatic Vacuum Gripper", image: "/projects/gripper.webp", desc: "Modular venturi vacuum gripper for a robotic arm with 4 suction cups and ESP32 monitoring.", url: "https://github.com/Senki16/pneumatic-vacuum-gripper" },
     { name: "FEM Bench Vise Analysis", image: "/projects/fem-vise.webp", desc: "Static FEM analysis in SolidWorks Simulation, validated with strain-gauge measurements.", url: "https://github.com/Senki16/fem-bench-vise-analysis" },
@@ -270,7 +271,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [viewerImage, setViewerImage] = useState<{ src: string; title: string; kind?: 'image' | 'pdf'; thumb?: string } | null>(null);
+  const [viewerImage, setViewerImage] = useState<{ src: string; title: string; kind?: 'image' | 'pdf' | 'embed'; thumb?: string; link?: string } | null>(null);
 
   useEffect(() => {
     if (!viewerImage) return;
@@ -548,6 +549,18 @@ export default function App() {
                               loading="lazy"
                               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
                             />
+                          </button>
+                        ) : project.videoEmbed ? (
+                          <button
+                            type="button"
+                            onClick={() => { playSfx('select'); setViewerImage({ src: project.videoEmbed!, title: project.name, kind: 'embed', link: project.videoUrl }); }}
+                            className="relative w-full aspect-[16/10] flex flex-col items-center justify-center gap-2 bg-gradient-to-br from-p5-black to-p5-red/60 text-p5-white cursor-pointer"
+                            aria-label={`Play video: ${project.name}`}
+                          >
+                            <div className="w-12 h-12 md:w-16 md:h-16 bg-p5-red flex items-center justify-center -skew-x-12 shadow-[4px_4px_0_#fff] group-hover:scale-110 transition-transform">
+                              <Play className="w-6 h-6 md:w-8 md:h-8 fill-current skew-x-12" />
+                            </div>
+                            <span className="text-[10px] md:text-xs uppercase tracking-widest font-bold">Watch video</span>
                           </button>
                         ) : (
                           <div className="w-full aspect-[16/10] flex items-center justify-center bg-gradient-to-br from-p5-black to-p5-red/50">
@@ -943,7 +956,27 @@ export default function App() {
               exit={{ scale: 0.9, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
             >
-              {viewerImage.kind === 'pdf' ? (
+              {viewerImage.kind === 'embed' ? (
+                <div className="w-full flex flex-col items-center gap-3">
+                  <iframe
+                    src={viewerImage.src}
+                    title={viewerImage.title}
+                    className="w-full max-w-xl h-[70vh] bg-p5-white border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+                    allowFullScreen
+                  />
+                  {viewerImage.link && (
+                    <a
+                      href={viewerImage.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-red px-3 py-1 hover:bg-p5-white hover:text-p5-red transition-colors flex items-center gap-2"
+                    >
+                      <Linkedin className="w-4 h-4" />
+                      Open on LinkedIn
+                    </a>
+                  )}
+                </div>
+              ) : viewerImage.kind === 'pdf' ? (
                 <object
                   data={`${viewerImage.src}#view=FitH`}
                   type="application/pdf"
