@@ -89,18 +89,21 @@ const resumeData = {
     {
       school: "EAFIT University",
       degree: "Mechanical Engineering",
-      period: "2021 - Present"
+      period: "2021 - Present",
+      logo: "/logos/eafit.webp"
     },
     {
       school: "Kyung Hee University",
       degree: "Academic Exchange (South Korea)",
       period: "Mar–Jun 2025",
-      note: "GKS Scholarship Recipient"
+      note: "GKS Scholarship Recipient",
+      logo: "/logos/kyung-hee.webp"
     },
     {
       school: "National University of Colombia",
       degree: "Partial Studies",
-      period: "2019–2021"
+      period: "2019–2021",
+      logo: "/logos/unal.webp"
     }
   ],
   skills: {
@@ -581,12 +584,19 @@ export default function App() {
                 {activeSection === 'education' && (
                   <div className="space-y-3 md:space-y-8">
                     {resumeData.education.map((edu, i) => (
-                      <div key={i} className={`p-3 md:p-8 shadow-xl transform text-sm md:text-base ${i % 2 === 0 ? '-rotate-1 bg-p5-black text-p5-white' : 'rotate-1 bg-p5-red text-p5-white'}`}>
-                        <h3 className="text-xl md:text-3xl font-display uppercase">{edu.school}</h3>
-                        <p className="text-base md:text-xl font-bold italic">{edu.degree}</p>
-                        <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-2 md:mt-4 gap-2">
-                          <span className="font-mono text-xs md:text-base">{edu.period}</span>
-                          {edu.note && <span className="text-xs md:text-sm font-black border-2 border-current px-2 py-1 uppercase w-fit">{edu.note}</span>}
+                      <div key={i} className={`p-3 md:p-8 shadow-xl transform text-sm md:text-base flex items-center gap-3 md:gap-8 ${i % 2 === 0 ? '-rotate-1 bg-p5-black text-p5-white' : 'rotate-1 bg-p5-red text-p5-white'}`}>
+                        {edu.logo && (
+                          <div className="flex-shrink-0 w-16 h-16 md:w-32 md:h-32 bg-p5-white p-1.5 md:p-3 flex items-center justify-center -skew-x-6 shadow-[4px_4px_0_rgba(0,0,0,0.4)]">
+                            <img src={edu.logo} alt={`${edu.school} logo`} loading="lazy" className="max-w-full max-h-full object-contain skew-x-6" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-xl md:text-3xl font-display uppercase">{edu.school}</h3>
+                          <p className="text-base md:text-xl font-bold italic">{edu.degree}</p>
+                          <div className="flex flex-col md:flex-row md:justify-between md:items-center mt-2 md:mt-4 gap-2">
+                            <span className="font-mono text-xs md:text-base">{edu.period}</span>
+                            {edu.note && <span className="text-xs md:text-sm font-black border-2 border-current px-2 py-1 uppercase w-fit">{edu.note}</span>}
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -643,10 +653,10 @@ export default function App() {
                         onMouseEnter={() => playSfx('hover')}
                         className="bg-gray-100 border-b-8 border-p5-red relative flex flex-col"
                       >
-                        {cert.file ? (
+                        {cert.file || cert.thumb ? (
                           <button
                             type="button"
-                            onClick={() => { playSfx('select'); setViewerImage({ src: cert.file!, title: cert.name, kind: 'pdf', thumb: cert.thumb }); }}
+                            onClick={() => { playSfx('select'); setViewerImage(cert.file ? { src: cert.file, title: cert.name, kind: 'pdf', thumb: cert.thumb } : { src: cert.thumb!, title: cert.name }); }}
                             className="relative block w-full aspect-video overflow-hidden bg-p5-black group cursor-zoom-in"
                             aria-label={`View certificate: ${cert.name}`}
                           >
