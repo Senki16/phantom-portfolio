@@ -221,9 +221,9 @@ const resumeData = {
     { name: "Everyday Ecology Challenge", image: "/projects/ecology.webp", desc: "Home bokashi composting experiment documented as a seven-page website.", url: "https://github.com/Senki16/everyday-ecology-challenge", liveUrl: "https://everyday-ecology-challenge.vercel.app/", liveLabel: "Website" },
     { name: "Nintendo Switch Sales Analysis", image: "/projects/nintendo.webp", desc: "Exploratory data analysis in Python (pandas, Matplotlib, SciPy) with hypothesis testing.", url: "https://github.com/Senki16/nintendo-switch-sales-analysis" },
     { name: "Landslide Monitoring Proposal", image: "/projects/landslide.webp", desc: "AI-assisted landslide monitoring platform proposal for the Medellin–Bogota highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal", liveUrl: "https://slopewatch-landslide.vercel.app", liveLabel: "Website" },
-    { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", liveUrl: "https://hunter-training-alpha.vercel.app/", liveLabel: "Open App" },
+    { name: "Gaming Training App", image: "/projects/hunter-system.webp", imageCover: true, desc: "A training app for gamers with structured exercises.", liveUrl: "https://hunter-training-alpha.vercel.app/", liveLabel: "Open App" },
     { name: "YOLOX-nano Object Detection App", image: "/projects/yolox.webp", desc: "Object detection app built with YOLOX-nano.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC", liveUrl: "https://yolo-v5-object-detection-app-pc.vercel.app/", liveLabel: "Website" },
-    { name: "NEONSAE Videogame", desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
+    { name: "NEONSAE Videogame", image: "/projects/neonsae.webp", imageCover: true, desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
   ]
 };
 
@@ -547,7 +547,7 @@ export default function App() {
                               src={project.image}
                               alt={project.name}
                               loading="lazy"
-                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                              className={`w-full h-full ${project.imageCover ? 'object-cover object-top' : 'object-contain'} group-hover:scale-105 transition-transform duration-300`}
                             />
                           </button>
                         ) : project.videoEmbed ? (
