@@ -157,9 +157,11 @@ const resumeData = {
     {
       name: "EF SET English Certificate 80/100 (C2 Proficient)",
       issuer: "EF SET",
+      date: "Apr 2026",
       desc: "Standardized English test result at the C2 Proficient level.",
       skills: ["English"],
-      url: "https://cert.efset.org/en/uQG6o1"
+      url: "https://cert.efset.org/en/uQG6o1",
+      thumb: "/certificates/thumbs/EF_SET_David_Zuluaga.webp"
     },
     {
       name: "Stateflow Onramp",
