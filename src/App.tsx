@@ -206,22 +206,22 @@ const resumeData = {
     { title: "Swimming", company: "Brazada Club", period: "2016–2019" }
   ],
   portfolio: [
-    { name: "XRP Robot Trajectory Mapping", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
-    { name: "Tripteron CNC Router", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
+    { name: "XRP Robot Trajectory Mapping", image: "/projects/xrp.webp", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
+    { name: "Tripteron CNC Router", image: "/projects/tripteron.webp", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
-    { name: "Human Powered Vehicles (HPV)", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
-    { name: "Pneumatic Vacuum Gripper", desc: "Modular venturi vacuum gripper for a robotic arm with 4 suction cups and ESP32 monitoring.", url: "https://github.com/Senki16/pneumatic-vacuum-gripper" },
-    { name: "FEM Bench Vise Analysis", desc: "Static FEM analysis in SolidWorks Simulation, validated with strain-gauge measurements.", url: "https://github.com/Senki16/fem-bench-vise-analysis" },
-    { name: "Spaghetti Truss Analysis", desc: "Pratt truss design with material testing, a Python method-of-joints solver and buckling analysis.", url: "https://github.com/Senki16/spaghetti-truss-analysis" },
-    { name: "Project Icarus — Folding Bicycle", desc: "Folding bicycle built around a purpose-designed hinge, machined and assembled for Machine Design II.", url: "https://github.com/Senki16/icarus-folding-bicycle" },
-    { name: "Stirling Engine — Candle & Coin", desc: "Beta-type Stirling engine powered by a single tea candle, built to lift a coin 1.5 m.", url: "https://github.com/Senki16/stirling-engine-candle-coin" },
-    { name: "EcoShamp Process Automation", desc: "Automated nano-factory for natural shampoo: seven subprocesses, sensors and actuators for 2,000–3,000 units/day.", url: "https://github.com/Senki16/ecoshamp-process-automation", liveUrl: "https://ecoshamp-process-automation.vercel.app/", liveLabel: "Website" },
-    { name: "Elevator Maintenance — EAFIT", desc: "Study of EAFIT's elevator system: standards, installed brands, cost-reduction routes and a maintenance-plan simulator.", url: "https://github.com/Senki16/elevator-maintenance-eafit", liveUrl: "https://elevator-maintenance-eafit.vercel.app", liveLabel: "Website" },
-    { name: "Everyday Ecology Challenge", desc: "Home bokashi composting experiment documented as a seven-page website.", url: "https://github.com/Senki16/everyday-ecology-challenge", liveUrl: "https://everyday-ecology-challenge.vercel.app/", liveLabel: "Website" },
-    { name: "Nintendo Switch Sales Analysis", desc: "Exploratory data analysis in Python (pandas, Matplotlib, SciPy) with hypothesis testing.", url: "https://github.com/Senki16/nintendo-switch-sales-analysis" },
-    { name: "Landslide Monitoring Proposal", desc: "AI-assisted landslide monitoring platform proposal for the Medellin–Bogota highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal", liveUrl: "https://slopewatch-landslide.vercel.app", liveLabel: "Website" },
+    { name: "Human Powered Vehicles (HPV)", image: "/projects/hpv.webp", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
+    { name: "Pneumatic Vacuum Gripper", image: "/projects/gripper.webp", desc: "Modular venturi vacuum gripper for a robotic arm with 4 suction cups and ESP32 monitoring.", url: "https://github.com/Senki16/pneumatic-vacuum-gripper" },
+    { name: "FEM Bench Vise Analysis", image: "/projects/fem-vise.webp", desc: "Static FEM analysis in SolidWorks Simulation, validated with strain-gauge measurements.", url: "https://github.com/Senki16/fem-bench-vise-analysis" },
+    { name: "Spaghetti Truss Analysis", image: "/projects/truss.webp", desc: "Pratt truss design with material testing, a Python method-of-joints solver and buckling analysis.", url: "https://github.com/Senki16/spaghetti-truss-analysis" },
+    { name: "Project Icarus — Folding Bicycle", image: "/projects/icarus.webp", desc: "Folding bicycle built around a purpose-designed hinge, machined and assembled for Machine Design II.", url: "https://github.com/Senki16/icarus-folding-bicycle" },
+    { name: "Stirling Engine — Candle & Coin", image: "/projects/stirling.webp", desc: "Beta-type Stirling engine powered by a single tea candle, built to lift a coin 1.5 m.", url: "https://github.com/Senki16/stirling-engine-candle-coin" },
+    { name: "EcoShamp Process Automation", image: "/projects/ecoshamp.webp", desc: "Automated nano-factory for natural shampoo: seven subprocesses, sensors and actuators for 2,000–3,000 units/day.", url: "https://github.com/Senki16/ecoshamp-process-automation", liveUrl: "https://ecoshamp-process-automation.vercel.app/", liveLabel: "Website" },
+    { name: "Elevator Maintenance — EAFIT", image: "/projects/elevator.webp", desc: "Study of EAFIT's elevator system: standards, installed brands, cost-reduction routes and a maintenance-plan simulator.", url: "https://github.com/Senki16/elevator-maintenance-eafit", liveUrl: "https://elevator-maintenance-eafit.vercel.app", liveLabel: "Website" },
+    { name: "Everyday Ecology Challenge", image: "/projects/ecology.webp", desc: "Home bokashi composting experiment documented as a seven-page website.", url: "https://github.com/Senki16/everyday-ecology-challenge", liveUrl: "https://everyday-ecology-challenge.vercel.app/", liveLabel: "Website" },
+    { name: "Nintendo Switch Sales Analysis", image: "/projects/nintendo.webp", desc: "Exploratory data analysis in Python (pandas, Matplotlib, SciPy) with hypothesis testing.", url: "https://github.com/Senki16/nintendo-switch-sales-analysis" },
+    { name: "Landslide Monitoring Proposal", image: "/projects/landslide.webp", desc: "AI-assisted landslide monitoring platform proposal for the Medellin–Bogota highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal", liveUrl: "https://slopewatch-landslide.vercel.app", liveLabel: "Website" },
     { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", liveUrl: "https://hunter-training-alpha.vercel.app/", liveLabel: "Open App" },
-    { name: "YOLOX-nano Object Detection App", desc: "Object detection app built with YOLOX-nano.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC", liveUrl: "https://yolo-v5-object-detection-app-pc.vercel.app/", liveLabel: "Website" },
+    { name: "YOLOX-nano Object Detection App", image: "/projects/yolox.webp", desc: "Object detection app built with YOLOX-nano.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC", liveUrl: "https://yolo-v5-object-detection-app-pc.vercel.app/", liveLabel: "Website" },
     { name: "NEONSAE Videogame", desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
   ]
 };
@@ -524,32 +524,49 @@ export default function App() {
                 )}
 
                 {activeSection === 'projects' && (
-                  <div className="grid grid-cols-1 gap-3 md:gap-6">
+                  <div className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-2 md:gap-4">
                     {resumeData.portfolio.map((project, i) => (
                       <motion.div
                         key={i}
-                        whileHover={{ 
-                          scale: 1.03, 
-                          x: 15,
-                          boxShadow: "0 0 25px rgba(211, 18, 30, 0.4)",
-                          backgroundColor: "#000",
-                          color: "#fff"
-                        }}
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: i * 0.03 }}
+                        whileHover={{ scale: 1.03, boxShadow: "0 0 25px rgba(211, 18, 30, 0.4)" }}
                         onMouseEnter={() => playSfx('hover')}
-                        className="bg-gray-100 p-3 md:p-6 border-r-8 border-p5-red group transition-all duration-200"
+                        className="bg-gray-100 border-b-8 border-p5-red group flex flex-col hover:bg-p5-black hover:text-p5-white transition-colors duration-200"
                       >
-                        <div className="flex flex-col gap-3">
-                          <div className="flex flex-wrap items-center gap-2">
-                            <h3 className="text-lg md:text-3xl font-display uppercase flex items-center gap-2 md:gap-4">
-                              <Zap className="text-p5-red group-hover:animate-pulse w-5 h-5 md:w-6 md:h-6" />
-                              {project.name}
-                            </h3>
+                        {project.image ? (
+                          <button
+                            type="button"
+                            onClick={() => { playSfx('select'); setViewerImage({ src: project.image!, title: project.name }); }}
+                            className="relative block w-full aspect-[16/10] overflow-hidden bg-p5-white cursor-zoom-in"
+                            aria-label={`View preview: ${project.name}`}
+                          >
+                            <img
+                              src={project.image}
+                              alt={project.name}
+                              loading="lazy"
+                              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                            />
+                          </button>
+                        ) : (
+                          <div className="w-full aspect-[16/10] flex items-center justify-center bg-gradient-to-br from-p5-black to-p5-red/50">
+                            <Zap className="w-12 h-12 md:w-16 md:h-16 text-p5-white opacity-40" />
+                          </div>
+                        )}
+                        <div className="p-2 md:p-3 flex-1 flex flex-col gap-1.5">
+                          <h3 className="text-sm md:text-base font-display uppercase leading-tight flex items-start gap-1.5">
+                            <Zap className="text-p5-red group-hover:animate-pulse w-4 h-4 md:w-5 md:h-5 flex-shrink-0 mt-0.5" />
+                            {project.name}
+                          </h3>
+                          <p className="text-[11px] md:text-xs italic opacity-80 line-clamp-2" title={project.desc}>{project.desc}</p>
+                          <div className="flex flex-wrap gap-2 mt-auto pt-1">
                             {project.url && (
                               <a
                                 href={project.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-2 py-1 hover:bg-p5-black hover:text-p5-white transition-colors"
+                                className="text-xs uppercase tracking-wide text-p5-black bg-p5-red px-2 py-1 hover:bg-p5-white hover:text-p5-black transition-colors"
                               >
                                 GitHub
                               </a>
@@ -559,7 +576,7 @@ export default function App() {
                                 href={project.videoUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-xs md:text-sm uppercase tracking-wide text-p5-black bg-p5-red px-2 py-1 hover:bg-p5-black hover:text-p5-white transition-colors flex items-center gap-1"
+                                className="text-xs uppercase tracking-wide text-p5-black bg-p5-red px-2 py-1 hover:bg-p5-white hover:text-p5-black transition-colors flex items-center gap-1"
                               >
                                 <ExternalLink className="w-3 h-3" />
                                 Video
@@ -570,14 +587,13 @@ export default function App() {
                                 href={project.liveUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-black px-2 py-1 hover:bg-p5-red hover:text-p5-white transition-colors flex items-center gap-1"
+                                className="text-xs uppercase tracking-wide text-p5-white bg-p5-black px-2 py-1 hover:bg-p5-red hover:text-p5-white transition-colors flex items-center gap-1 group-hover:border group-hover:border-p5-white"
                               >
                                 <ExternalLink className="w-3 h-3" />
                                 {project.liveLabel ?? 'Play'}
                               </a>
                             )}
                           </div>
-                          <p className="text-xs md:text-lg italic mt-2 opacity-80">{project.desc}</p>
                         </div>
                       </motion.div>
                     ))}
