@@ -556,8 +556,8 @@ export default function App() {
                             />
                             {project.videoEmbed && (
                               <div className="absolute inset-0 flex items-center justify-center bg-p5-black/20">
-                                <div className="w-7 h-7 md:w-9 md:h-9 bg-p5-red text-p5-white flex items-center justify-center -skew-x-12 shadow-[2px_2px_0_#fff] group-hover:scale-110 transition-transform">
-                                  <Play className="w-3.5 h-3.5 md:w-4 md:h-4 fill-current skew-x-12" />
+                                <div className="w-5 h-5 md:w-6 md:h-6 bg-p5-red text-p5-white flex items-center justify-center -skew-x-12 shadow-[1px_1px_0_#fff] group-hover:scale-110 transition-transform">
+                                  <Play className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current skew-x-12" />
                                 </div>
                               </div>
                             )}
@@ -578,8 +578,8 @@ export default function App() {
                               className="absolute inset-0 w-full h-full pointer-events-none"
                             />
                             <div className="absolute inset-0 flex items-center justify-center bg-p5-black/20">
-                              <div className="w-7 h-7 md:w-9 md:h-9 bg-p5-red text-p5-white flex items-center justify-center -skew-x-12 shadow-[2px_2px_0_#fff] group-hover:scale-110 transition-transform">
-                                <Play className="w-3.5 h-3.5 md:w-4 md:h-4 fill-current skew-x-12" />
+                              <div className="w-5 h-5 md:w-6 md:h-6 bg-p5-red text-p5-white flex items-center justify-center -skew-x-12 shadow-[1px_1px_0_#fff] group-hover:scale-110 transition-transform">
+                                <Play className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current skew-x-12" />
                               </div>
                             </div>
                           </button>
