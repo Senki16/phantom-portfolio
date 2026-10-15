@@ -209,7 +209,7 @@ const resumeData = {
   portfolio: [
     { name: "XRP Robot Trajectory Mapping", image: "/projects/xrp.webp", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
     { name: "Tripteron CNC Router", image: "/projects/tripteron.webp", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
-    { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoEmbed: "https://www.linkedin.com/embed/feed/update/urn:li:activity:7295993898923884545", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
+    { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoEmbed: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7295993868485836802?compact=1", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
     { name: "Human Powered Vehicles (HPV)", image: "/projects/hpv.webp", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
     { name: "Pneumatic Vacuum Gripper", image: "/projects/gripper.webp", desc: "Modular venturi vacuum gripper for a robotic arm with 4 suction cups and ESP32 monitoring.", url: "https://github.com/Senki16/pneumatic-vacuum-gripper" },
     { name: "FEM Bench Vise Analysis", image: "/projects/fem-vise.webp", desc: "Static FEM analysis in SolidWorks Simulation, validated with strain-gauge measurements.", url: "https://github.com/Senki16/fem-bench-vise-analysis" },
@@ -961,7 +961,7 @@ export default function App() {
                   <iframe
                     src={viewerImage.src}
                     title={viewerImage.title}
-                    className="w-full max-w-xl h-[70vh] bg-p5-white border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+                    className="w-full max-w-3xl aspect-[504/399] max-h-[75vh] bg-p5-white border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
                     allowFullScreen
                   />
                   {viewerImage.link && (
