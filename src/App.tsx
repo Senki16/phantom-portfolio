@@ -209,7 +209,7 @@ const resumeData = {
   portfolio: [
     { name: "XRP Robot Trajectory Mapping", image: "https://i.ytimg.com/vi/agATlmuYTp4/hqdefault.jpg", videoEmbed: "https://www.youtube.com/embed/agATlmuYTp4", videoAspect: "16/9", videoUrl: "https://youtu.be/agATlmuYTp4", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
     { name: "Tripteron CNC Router", image: "/projects/tripteron.webp", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
-    { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoEmbed: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7295993868485836802?compact=1", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
+    { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoEmbed: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7295993868485836802?collapsed=1", videoAspect: "504/835", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
     { name: "Human Powered Vehicles (HPV)", image: "/projects/hpv.webp", desc: "Recumbent human-powered tricycle: chassis, Ackermann steering, suspension synthesis, drivetrain and SolidWorks CAD.", url: "https://github.com/Senki16/human-powered-vehicle-design" },
     { name: "Pneumatic Vacuum Gripper", image: "/projects/gripper.webp", desc: "Modular venturi vacuum gripper for a robotic arm with 4 suction cups and ESP32 monitoring.", url: "https://github.com/Senki16/pneumatic-vacuum-gripper" },
     { name: "FEM Bench Vise Analysis", image: "/projects/fem-vise.webp", desc: "Static FEM analysis in SolidWorks Simulation, validated with strain-gauge measurements.", url: "https://github.com/Senki16/fem-bench-vise-analysis" },
@@ -228,6 +228,37 @@ const resumeData = {
 };
 
 // --- Components ---
+// Renders an embed at its native size, scaled to fit the card and centered vertically,
+// so the video frame shows instead of the post's header text.
+const ScaledEmbedPreview = ({ src, title, width, height }: { src: string; title: string; width: number; height: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [box, setBox] = useState({ w: 0, h: 0 });
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => setBox({ w: entry.contentRect.width, h: entry.contentRect.height }));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const scale = box.w / width;
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden">
+      {box.w > 0 && (
+        <iframe
+          src={src}
+          title={title}
+          loading="lazy"
+          tabIndex={-1}
+          className="absolute left-0 pointer-events-none"
+          style={{ width, height, top: (box.h - height * scale) / 2, transform: `scale(${scale})`, transformOrigin: 'top left' }}
+        />
+      )}
+    </div>
+  );
+};
+
 // TikTok logo (lucide-react has no TikTok icon)
 const TikTokIcon = ({ className = '' }: { className?: string }) => (
   <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -555,8 +586,8 @@ export default function App() {
                               className={`w-full h-full ${project.videoEmbed ? 'object-cover' : project.imageCover ? 'object-cover object-top' : 'object-contain'} group-hover:scale-105 transition-transform duration-300`}
                             />
                             {project.videoEmbed && (
-                              <div className="absolute inset-0 flex items-center justify-center bg-p5-black/20">
-                                <div className="w-5 h-5 md:w-6 md:h-6 bg-p5-red text-p5-white flex items-center justify-center -skew-x-12 shadow-[1px_1px_0_#fff] group-hover:scale-110 transition-transform">
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-5 h-5 md:w-6 md:h-6 bg-p5-red/60 text-p5-white flex items-center justify-center -skew-x-12 shadow-[1px_1px_0_rgba(255,255,255,0.6)] group-hover:bg-p5-red group-hover:scale-110 transition-all">
                                   <Play className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current skew-x-12" />
                                 </div>
                               </div>
@@ -569,16 +600,9 @@ export default function App() {
                             className="relative block w-full aspect-[16/10] overflow-hidden bg-p5-black cursor-pointer"
                             aria-label={`Play video: ${project.name}`}
                           >
-                            {/* The embedded post itself acts as the thumbnail; clicks go to the button */}
-                            <iframe
-                              src={project.videoEmbed}
-                              title={`${project.name} preview`}
-                              loading="lazy"
-                              tabIndex={-1}
-                              className="absolute inset-0 w-full h-full pointer-events-none"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-p5-black/20">
-                              <div className="w-5 h-5 md:w-6 md:h-6 bg-p5-red text-p5-white flex items-center justify-center -skew-x-12 shadow-[1px_1px_0_#fff] group-hover:scale-110 transition-transform">
+                            <ScaledEmbedPreview src={project.videoEmbed} title={`${project.name} preview`} width={504} height={835} />
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="w-5 h-5 md:w-6 md:h-6 bg-p5-red/60 text-p5-white flex items-center justify-center -skew-x-12 shadow-[1px_1px_0_rgba(255,255,255,0.6)] group-hover:bg-p5-red group-hover:scale-110 transition-all">
                                 <Play className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current skew-x-12" />
                               </div>
                             </div>
@@ -982,8 +1006,11 @@ export default function App() {
                   <iframe
                     src={viewerImage.src}
                     title={viewerImage.title}
-                    className="w-full max-w-3xl max-h-[75vh] bg-p5-white border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
-                    style={{ aspectRatio: viewerImage.aspect ?? '504/399' }}
+                    className="bg-p5-white border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+                    style={{
+                      aspectRatio: viewerImage.aspect ?? '16/9',
+                      width: `min(100%, 48rem, calc(75vh * ${viewerImage.aspect ?? '16/9'}))`
+                    }}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
