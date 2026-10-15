@@ -193,6 +193,7 @@ const resumeData = {
   ] as { name: string; issuer: string; date?: string; credentialId?: string; desc: string; skills?: string[]; file?: string; thumb?: string; url?: string }[],
   achievements: [
     { title: "GKS Scholarship", body: "Global Korea Scholarship for academic exchange (2025).", image: "/achievements/gks-korea.webp" },
+    { title: "TikTok Content Creator", body: "Travel and lifestyle videos from South Korea, Japan and Thailand on @senki.videos, reaching up to 239K views.", image: "/achievements/tiktok-senkivideos.webp", url: "https://www.tiktok.com/@senki.videos", urlLabel: "View profile" },
     { title: "Taekwondo Silver Medal", body: "Silver medal in Taekwondo Poomsae (2024).", image: "/achievements/taekwondo-medal.webp" },
     { title: "Physics Challenge Bronze", body: "Bronze medal – EIA Physics Challenge (2019).", image: "/achievements/reto-eia.webp" },
     { title: "Model United Nations", body: "Selected to represent NotreDame School at Yale University (2015).", image: "/achievements/yale-mun.jpg" },
@@ -761,6 +762,18 @@ export default function App() {
                         <div className="p-3 md:p-5">
                           <h3 className="text-lg md:text-2xl font-display uppercase text-p5-red mb-1 md:mb-2">{ach.title}</h3>
                           <p className="text-xs md:text-base italic">{ach.body}</p>
+                          {ach.url && (
+                            <a
+                              href={ach.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={() => playSfx('select')}
+                              className="mt-3 text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-red px-3 py-1 hover:bg-p5-white hover:text-p5-black transition-colors inline-flex items-center gap-1"
+                            >
+                              <TikTokIcon className="w-3 h-3 md:w-4 md:h-4" />
+                              {ach.urlLabel}
+                            </a>
+                          )}
                         </div>
                       </motion.div>
                     ))}
