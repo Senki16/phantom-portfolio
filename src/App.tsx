@@ -202,7 +202,7 @@ const resumeData = {
     { name: "Nintendo Switch Sales Analysis", desc: "Exploratory data analysis in Python (pandas, Matplotlib, SciPy) with hypothesis testing.", url: "https://github.com/Senki16/nintendo-switch-sales-analysis" },
     { name: "Landslide Monitoring Proposal", desc: "AI-assisted landslide monitoring platform proposal for the Medellin–Bogota highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal", liveUrl: "https://slopewatch-landslide.vercel.app", liveLabel: "Website" },
     { name: "Gaming Training App", desc: "A training app for gamers with structured exercises.", liveUrl: "https://hunter-training-alpha.vercel.app/", liveLabel: "Open App" },
-    { name: "YOLOv5 Object Detection App", desc: "Object detection app built with YOLOv5.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC" },
+    { name: "YOLOX-nano Object Detection App", desc: "Object detection app built with YOLOX-nano.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC", liveUrl: "https://yolo-v5-object-detection-app-pc.vercel.app/", liveLabel: "Website" },
     { name: "NEONSAE Videogame", desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
   ]
 };
