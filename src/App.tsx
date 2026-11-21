@@ -137,6 +137,14 @@ const resumeData = {
   },
   certificates: [
     {
+      name: "Renault Transformation Day — First Place",
+      issuer: "Renault-Sofasa",
+      date: "Nov 2026",
+      desc: "Recognition for first place at the Transformation Day 2026 challenge, signed by Renault-Sofasa's Industrial Director.",
+      file: "/certificates/Renault_Transformation_Day_First_Place_David_Zuluaga.pdf",
+      thumb: "/certificates/thumbs/Renault_Transformation_Day_First_Place_David_Zuluaga.jpg"
+    },
+    {
       name: "Global Korea Scholarship (GKS)",
       issuer: "National Institute for International Education (NIIED)",
       date: "Mar–Jun 2025",
@@ -193,7 +201,7 @@ const resumeData = {
     }
   ] as { name: string; issuer: string; date?: string; credentialId?: string; desc: string; skills?: string[]; file?: string; thumb?: string; url?: string }[],
   achievements: [
-    { title: "Renault Transformation Day — 1st Place", body: "First place at Renault's Transformation Day 2026 with an app developed for the challenge (Envigado, Nov 2026).", image: "/achievements/renault-transformation-day.webp", certificate: "/certificates/Renault_Transformation_Day_First_Place_David_Zuluaga.pdf", certificateThumb: "/certificates/thumbs/Renault_Transformation_Day_First_Place_David_Zuluaga.jpg" },
+    { title: "Renault Transformation Day — 1st Place", body: "First place at Renault's Transformation Day 2026 with an app developed for the challenge (Envigado, Nov 2026).", image: "/achievements/renault-transformation-day.webp" },
     { title: "GKS Scholarship", body: "Global Korea Scholarship for academic exchange (2025).", image: "/achievements/gks-korea.webp" },
     { title: "TikTok Content Creator", body: "Travel and lifestyle videos from South Korea, Japan and Thailand on @senki.videos, reaching up to 239K views.", image: "/achievements/tiktok-senkivideos.webp", url: "https://www.tiktok.com/@senki.videos", urlLabel: "View profile" },
     { title: "Taekwondo Silver Medal", body: "Silver medal in Taekwondo Poomsae (2024).", image: "/achievements/taekwondo-medal.webp" },
@@ -838,16 +846,6 @@ export default function App() {
                         <div className="p-3 md:p-5">
                           <h3 className="text-lg md:text-2xl font-display uppercase text-p5-red mb-1 md:mb-2">{ach.title}</h3>
                           <p className="text-xs md:text-base italic">{ach.body}</p>
-                          {ach.certificate && (
-                            <button
-                              type="button"
-                              onClick={() => { playSfx('select'); setViewerImage({ src: ach.certificate!, title: ach.title, kind: 'pdf', thumb: ach.certificateThumb }); }}
-                              className="mt-3 mr-2 text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-red px-3 py-1 hover:bg-p5-white hover:text-p5-black transition-colors inline-flex items-center gap-1"
-                            >
-                              <Award className="w-3 h-3 md:w-4 md:h-4" />
-                              View certificate
-                            </button>
-                          )}
                           {ach.url && (
                             <a
                               href={ach.url}
