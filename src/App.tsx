@@ -193,6 +193,7 @@ const resumeData = {
     }
   ] as { name: string; issuer: string; date?: string; credentialId?: string; desc: string; skills?: string[]; file?: string; thumb?: string; url?: string }[],
   achievements: [
+    { title: "Renault Transformation Day — 1st Place", body: "First place at Renault's Transformation Day 2026 with an app developed for the challenge (Envigado, Nov 2026).", image: "/achievements/renault-transformation-day.webp", certificate: "/certificates/Renault_Transformation_Day_First_Place_David_Zuluaga.pdf", certificateThumb: "/certificates/thumbs/Renault_Transformation_Day_First_Place_David_Zuluaga.jpg" },
     { title: "GKS Scholarship", body: "Global Korea Scholarship for academic exchange (2025).", image: "/achievements/gks-korea.webp" },
     { title: "TikTok Content Creator", body: "Travel and lifestyle videos from South Korea, Japan and Thailand on @senki.videos, reaching up to 239K views.", image: "/achievements/tiktok-senkivideos.webp", url: "https://www.tiktok.com/@senki.videos", urlLabel: "View profile" },
     { title: "Taekwondo Silver Medal", body: "Silver medal in Taekwondo Poomsae (2024).", image: "/achievements/taekwondo-medal.webp" },
@@ -207,6 +208,7 @@ const resumeData = {
     { title: "Swimming", company: "Brazada Club", period: "2016–2019" }
   ],
   portfolio: [
+    { name: "Renault Transformation Day App", image: "/projects/renault-transformation-day.webp", desc: "App developed for Renault at the Transformation Day 2026 challenge, where our team won first place.", liveUrl: "https://r4-renault-transformation-day.vercel.app/index.html", liveLabel: "Website" },
     { name: "XRP Robot Trajectory Mapping", image: "https://i.ytimg.com/vi/agATlmuYTp4/hqdefault.jpg", videoEmbed: "https://www.youtube.com/embed/agATlmuYTp4", videoAspect: "16/9", videoUrl: "https://youtu.be/agATlmuYTp4", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
     { name: "Tripteron CNC Router", image: "/projects/tripteron.webp", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoEmbed: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7295993868485836802?collapsed=1", videoAspect: "504/835", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
@@ -221,7 +223,7 @@ const resumeData = {
     { name: "Everyday Ecology Challenge", image: "/projects/ecology.webp", desc: "Home bokashi composting experiment documented as a seven-page website.", url: "https://github.com/Senki16/everyday-ecology-challenge", liveUrl: "https://everyday-ecology-challenge.vercel.app/", liveLabel: "Website" },
     { name: "Nintendo Switch Sales Analysis", image: "/projects/nintendo.webp", desc: "Exploratory data analysis in Python (pandas, Matplotlib, SciPy) with hypothesis testing.", url: "https://github.com/Senki16/nintendo-switch-sales-analysis" },
     { name: "Landslide Monitoring Proposal", image: "/projects/landslide.webp", desc: "AI-assisted landslide monitoring platform proposal for the Medellin–Bogota highway, with financial evaluation.", url: "https://github.com/Senki16/landslide-monitoring-project-proposal", liveUrl: "https://slopewatch-landslide.vercel.app", liveLabel: "Website" },
-    { name: "Gaming Training App", image: "/projects/hunter-system.webp", imageCover: true, desc: "A training app for gamers with structured exercises.", liveUrl: "https://hunter-training-alpha.vercel.app/", liveLabel: "Open App" },
+    { name: "Hunter System", image: "/projects/hunter-system.webp", imageCover: true, desc: "A training app for gamers with structured exercises.", liveUrl: "https://hunter-training-alpha.vercel.app/", liveLabel: "Open App" },
     { name: "YOLOX-nano Object Detection App", image: "/projects/yolox.webp", desc: "Object detection app built with YOLOX-nano.", url: "https://github.com/Senki16/YoloV5-object-detection-app-PC", liveUrl: "https://yolo-v5-object-detection-app-pc.vercel.app/", liveLabel: "Website" },
     { name: "NEONSAE Videogame", image: "/projects/neonsae.webp", imageCover: true, desc: "A neon-styled browser videogame built and deployed on Vercel.", liveUrl: "https://neonsae.vercel.app" }
   ]
@@ -836,6 +838,16 @@ export default function App() {
                         <div className="p-3 md:p-5">
                           <h3 className="text-lg md:text-2xl font-display uppercase text-p5-red mb-1 md:mb-2">{ach.title}</h3>
                           <p className="text-xs md:text-base italic">{ach.body}</p>
+                          {ach.certificate && (
+                            <button
+                              type="button"
+                              onClick={() => { playSfx('select'); setViewerImage({ src: ach.certificate!, title: ach.title, kind: 'pdf', thumb: ach.certificateThumb }); }}
+                              className="mt-3 mr-2 text-xs md:text-sm uppercase tracking-wide text-p5-white bg-p5-red px-3 py-1 hover:bg-p5-white hover:text-p5-black transition-colors inline-flex items-center gap-1"
+                            >
+                              <Award className="w-3 h-3 md:w-4 md:h-4" />
+                              View certificate
+                            </button>
+                          )}
                           {ach.url && (
                             <a
                               href={ach.url}
