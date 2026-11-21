@@ -11,6 +11,7 @@ import {
   VolumeX,
   ExternalLink,
   ChevronRight,
+  ChevronLeft,
   MapPin,
   Linkedin,
   Phone,
@@ -217,7 +218,7 @@ const resumeData = {
   ],
   portfolio: [
     { name: "Renault Transformation Day App", image: "/projects/renault-transformation-day.webp", desc: "App developed for Renault at the Transformation Day 2026 challenge, where our team won first place.", liveUrl: "https://r4-renault-transformation-day.vercel.app/index.html", liveLabel: "Website" },
-    { name: "Three-Finger Robotic Gripper for UR5e", image: "/projects/gripper-ur5e.webp", desc: "Detail design of a three-finger gripper for the UR5e arm: static, kinematic and dynamic calculations validated against Working Model 2D (max. 0.034% error).", url: "https://github.com/Senki16/gripper-ur5e-v24", liveUrl: "https://gripper-ur5e-v24.vercel.app/", liveLabel: "Website" },
+    { name: "Three-Finger Robotic Gripper for UR5e", image: "/projects/gripper-ur5e/web-3d-viewer.webp", gallery: ["/projects/gripper-ur5e/web-3d-viewer.webp", "/projects/gripper-ur5e/cad-assembly.webp", "/projects/gripper-ur5e/exploded-view.webp", "/projects/gripper-ur5e/prototype.webp", "/projects/gripper-ur5e/electronics.webp", "/projects/gripper-ur5e/telemetry.webp", "/projects/gripper-ur5e/ur5e-simulation.webp"], desc: "3D-printed three-finger gripper for the UR5e (V31): Dynamixel-driven worm-gear fingers, FSR force sensing, ESP32-S3 control over RS-485 and live telemetry, plus a website with an interactive 3D viewer of the 126-part CAD assembly.", url: "https://github.com/Senki16/gripper-ur5e-v24", liveUrl: "https://gripper-ur5e-v24.vercel.app/", liveLabel: "Website" },
     { name: "XRP Robot Trajectory Mapping", image: "https://i.ytimg.com/vi/agATlmuYTp4/hqdefault.jpg", videoEmbed: "https://www.youtube.com/embed/agATlmuYTp4", videoAspect: "16/9", videoUrl: "https://youtu.be/agATlmuYTp4", desc: "Line-following XRP robot that estimates its pose by fusing encoders, gyroscope and a 360° LiDAR with an extended Kalman filter, plus a pixel-art simulator website.", url: "https://github.com/Senki16/reto1-xrp-mapeo-trayectoria", liveUrl: "https://reto1-xrp-mapeo-trayectoria.vercel.app/", liveLabel: "Website" },
     { name: "Tripteron CNC Router", image: "/projects/tripteron.webp", desc: "3-PRRR parallel Tripteron CNC router: kinematics, statics, lead screw sizing, FEA and drawing package.", url: "https://github.com/Senki16/tripteron-cnc-router" },
     { name: "MagLev Motor Prototype", desc: "Magnetic levitation motor prototype and controls.", videoEmbed: "https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7295993868485836802?collapsed=1", videoAspect: "504/835", videoUrl: "https://www.linkedin.com/posts/activity-7295993898923884545-7me-?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEGxAV4BlfZuvGB2cwimsjuECYZOL3NjdC4" },
@@ -313,11 +314,23 @@ export default function App() {
   const [activeSection, setActiveSection] = useState<SectionId>('home');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [viewerImage, setViewerImage] = useState<{ src: string; title: string; kind?: 'image' | 'pdf' | 'embed'; thumb?: string; link?: string; aspect?: string } | null>(null);
+  const [viewerImage, setViewerImage] = useState<{ src: string; title: string; kind?: 'image' | 'pdf' | 'embed'; thumb?: string; link?: string; aspect?: string; gallery?: string[] } | null>(null);
+
+  const stepGallery = (dir: number) => {
+    setViewerImage(v => {
+      if (!v?.gallery) return v;
+      const i = v.gallery.indexOf(v.src);
+      return { ...v, src: v.gallery[(i + dir + v.gallery.length) % v.gallery.length] };
+    });
+  };
 
   useEffect(() => {
     if (!viewerImage) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setViewerImage(null); };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setViewerImage(null);
+      else if (e.key === 'ArrowRight') stepGallery(1);
+      else if (e.key === 'ArrowLeft') stepGallery(-1);
+    };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [viewerImage]);
@@ -585,7 +598,7 @@ export default function App() {
                               playSfx('select');
                               setViewerImage(project.videoEmbed
                                 ? { src: project.videoEmbed, title: project.name, kind: 'embed', link: project.videoUrl, aspect: project.videoAspect }
-                                : { src: project.image!, title: project.name });
+                                : { src: project.image!, title: project.name, gallery: project.gallery });
                             }}
                             className={`relative block w-full aspect-[16/10] overflow-hidden bg-p5-white ${project.videoEmbed ? 'cursor-pointer' : 'cursor-zoom-in'}`}
                             aria-label={`${project.videoEmbed ? 'Play video' : 'View preview'}: ${project.name}`}
@@ -1065,11 +1078,36 @@ export default function App() {
                   </div>
                 </object>
               ) : (
-                <img
-                  src={viewerImage.src}
-                  alt={viewerImage.title}
-                  className="max-h-[80vh] w-auto max-w-full object-contain border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
-                />
+                <div className="relative flex items-center justify-center max-w-full">
+                  <img
+                    src={viewerImage.src}
+                    alt={viewerImage.title}
+                    className="max-h-[80vh] w-auto max-w-full object-contain border-4 border-p5-white shadow-[10px_10px_0_#D3121E]"
+                  />
+                  {viewerImage.gallery && viewerImage.gallery.length > 1 && (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() => { playSfx('hover'); stepGallery(-1); }}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 bg-p5-red/80 text-p5-white p-1.5 md:p-2 border-2 border-p5-white hover:bg-p5-red transition-colors"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft size={24} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => { playSfx('hover'); stepGallery(1); }}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 bg-p5-red/80 text-p5-white p-1.5 md:p-2 border-2 border-p5-white hover:bg-p5-red transition-colors"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight size={24} />
+                      </button>
+                      <span className="absolute bottom-2 right-2 bg-p5-black/80 text-p5-white font-mono text-xs px-2 py-0.5">
+                        {viewerImage.gallery.indexOf(viewerImage.src) + 1} / {viewerImage.gallery.length}
+                      </span>
+                    </>
+                  )}
+                </div>
               )}
               <figcaption className="mt-4 bg-p5-red text-p5-white font-display uppercase text-lg md:text-3xl px-4 py-1 -skew-x-12">
                 {viewerImage.title}
